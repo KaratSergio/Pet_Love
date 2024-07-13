@@ -9,7 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
+        manrope: ['ManropeMedium', 'sans-serif'],
+        manropeSemiBold: ['ManropeSemiBold', 'sans-serif'],
+        manropeBold: ['ManropeBold', 'sans-serif'],
+        manropeExtraBold: ['ManropeExtraBold', 'sans-serif'],
+      },
+      maxWidth: {
+        desktop: '1280px',
+        tablet: '768px',
+        mobile: '375px',
       },
     },
   },
@@ -21,4 +29,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

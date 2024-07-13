@@ -14,7 +14,7 @@ if (rootElement) {
     <React.StrictMode>
       {/* <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}> */}
-      <BrowserRouter>
+      <BrowserRouter basename="/Pet_Love">
         <App />
       </BrowserRouter>
       {/* </PersistGate>

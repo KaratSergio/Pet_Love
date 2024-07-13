@@ -25,6 +25,7 @@
       "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@schemas/*": ["src/schemas/*"],
       "@routes/*": ["src/routes/*"]
     }
   },

@@ -16,6 +16,7 @@ export default defineConfig({
       '@utils': '/src/utils',
       '@hooks': '/src/hooks',
       '@routes': '/src/routes',
+      '@schemas': '/src/schemas',
     },
   },
   base: '/Pet_Love/',

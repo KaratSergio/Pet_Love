@@ -1,13 +1,12 @@
+import RegistrationForm from '@components/Auth/RegistrationForm';
+
 const RegistrationPage: React.FC = () => {
   return (
-    <section className="mx-auto">
-      <h2 className="invisible text-sm">Registration Page</h2>
+    <section className="mx-auto bg-orange-50 p-8">
       <div className="flex gap-8">
+        <div className="w-[592px] bg-yellow rounded-60"></div>
         <div>
-          <p className="w-[592px] h-[654px] bg-yellow-400">img</p>
-        </div>
-        <div>
-          <p className="w-[592px] h-[654px]">reg form</p>
+          <RegistrationForm />
         </div>
       </div>
     </section>

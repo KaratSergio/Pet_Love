@@ -1,13 +1,13 @@
+import LoginForm from '@components/Auth/LoginForm';
+
 const LoginPage: React.FC = () => {
   return (
-    <section className="mx-auto">
-      <h2 className="invisible text-sm">Login Page</h2>
+    <section className="mx-auto bg-orange-50 p-8">
       <div className="flex gap-8">
+        <div className="w-[592px] bg-yellow rounded-60"></div>
+
         <div>
-          <p className="w-[592px] h-[654px] bg-yellow-400">img</p>
-        </div>
-        <div>
-          <p className="w-[592px] h-[654px]">login form</p>
+          <LoginForm />
         </div>
       </div>
     </section>

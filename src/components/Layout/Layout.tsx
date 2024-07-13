@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 
 const Layout: React.FC = () => {
   return (
-    <div className="m-auto max-w-desktop p-8">
+    <div className="m-auto max-w-desktop">
       <Header />
       <Outlet />
     </div>

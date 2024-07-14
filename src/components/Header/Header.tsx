@@ -1,14 +1,27 @@
+import { useLocation, Link } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 import Icon from '../Icon/Icon';
 
 const Header: React.FC = () => {
+  const location = useLocation();
+
+  const isHomePage = location.pathname === '/home';
+
   return (
-    <div className="w-full max-w-[1280px] bg-orange-50 p-8 flex items-center justify-between">
-      <p className="text-[28px] font-bold">
+    <div
+      className={`w-full max-w-[1280px] p-8 flex items-center justify-between ${
+        isHomePage ? 'bg-yellow rounded-t-[60px]' : 'bg-orange-50'
+      }`}
+    >
+      <Link to="/home" className="text-[28px] font-bold flex items-center">
         petl
-        <Icon id="icon-like-on" color="fill-yellow" strokeColor="stroke-yellow" />
+        <Icon
+          id="icon-like-on"
+          color={isHomePage ? 'fill-white' : 'fill-yellow'}
+          strokeColor={isHomePage ? 'stroke-white' : 'stroke-yellow'}
+        />
         ve
-      </p>
+      </Link>
       <Navbar />
     </div>
   );

@@ -1,0 +1,1 @@
+import{j as e}from"./index-dda4f40a.js";const t=()=>e.jsx("section",{className:"mx-auto w-full max-w-desktop p-8",children:e.jsx("h2",{className:"text-[54px]",children:"My Profile"})});export{t as default};

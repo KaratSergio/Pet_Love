@@ -2,8 +2,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { logInSchema } from '@schemas/authSchemas';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
+
 import { signInUser } from '@redux/auth/auth-thunk';
+import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 import { selectIsLoading, selectError } from '@redux/auth/auth-selectors';
 
 import CustomInput from '../Custom/Input';

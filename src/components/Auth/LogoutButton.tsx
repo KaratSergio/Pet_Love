@@ -8,11 +8,7 @@ const LogoutButton: React.FC = () => {
     dispatch(signOutUser());
   };
 
-  return (
-    <button onClick={handleLogout} className="bg-red-500 text-white py-2 px-4 rounded">
-      Logout
-    </button>
-  );
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutButton;

@@ -3,7 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Loader from '@helpers/Loader';
 import Layout from '../Layout/Layout';
 
-// import PrivateRoute from '@routes/PrivateRoute';
+import PrivateRoute from '@routes/PrivateRoute';
+import PublicRoute from '@routes/PublicRoute';
 
 const Home = lazy(() => import('@pages/HomePage'));
 const News = lazy(() => import('@pages/NewsPage'));
@@ -20,13 +21,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="home" replace />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="profile" element={<Profile />} />
+            </Route>
+            <Route element={<PublicRoute />}>
+              <Route path="login" element={<Login />} />
+              <Route path="registration" element={<Registration />} />
+            </Route>
             <Route path="home" element={<Home />} />
             <Route path="news" element={<News />} />
             <Route path="notices" element={<Notices />} />
             <Route path="friends" element={<Friends />} />
-            <Route path="login" element={<Login />} />
-            <Route path="registration" element={<Registration />} />
-            <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>
       </Suspense>

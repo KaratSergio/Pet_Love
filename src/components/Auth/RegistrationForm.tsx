@@ -2,6 +2,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registrationSchema } from '@schemas/authSchemas';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
+import { signUpUser } from '@redux/auth/auth-thunk';
+import { selectIsLoading, selectError } from '@redux/auth/auth-selectors';
 
 import CustomInput from '../Custom/Input';
 import CustomButton from '../Custom/Button';
@@ -10,6 +13,10 @@ import PasswordField from './PasswordField';
 import { RegistrationFormInputs } from './types';
 
 const RegistrationForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +26,7 @@ const RegistrationForm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<RegistrationFormInputs> = (data) => {
-    console.log('Registration Data:', data);
+    dispatch(signUpUser(data));
   };
 
   return (
@@ -36,8 +43,13 @@ const RegistrationForm: React.FC = () => {
           error={errors.confirmPassword}
         />
       </div>
-      <CustomButton type="submit" className="h-[52px] mt-16 w-full py-4 bg-yellow text-white rounded-30">
-        REGISTRATION
+      {error && <p className="text-red-500 mt-4">{error}</p>}
+      <CustomButton
+        type="submit"
+        className="h-[52px] mt-16 w-full py-4 bg-yellow text-white rounded-30"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Registering...' : 'REGISTRATION'}
       </CustomButton>
       <p className="text-lightBlack font-medium text-sm text-center mt-4">
         Already have an account?{' '}

@@ -11,6 +11,7 @@ const Notices = lazy(() => import('@pages/NoticesPage'));
 const Friends = lazy(() => import('@pages/FriendsPage'));
 const Login = lazy(() => import('@pages/LoginPage'));
 const Registration = lazy(() => import('@pages/RegistrationPage'));
+const Profile = lazy(() => import('@pages/ProfilePage'));
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="friends" element={<Friends />} />
             <Route path="login" element={<Login />} />
             <Route path="registration" element={<Registration />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>
       </Suspense>

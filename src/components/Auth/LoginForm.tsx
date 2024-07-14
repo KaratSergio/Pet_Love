@@ -2,6 +2,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { logInSchema } from '@schemas/authSchemas';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
+import { signInUser } from '@redux/auth/auth-thunk';
+import { selectIsLoading, selectError } from '@redux/auth/auth-selectors';
 
 import CustomInput from '../Custom/Input';
 import CustomButton from '../Custom/Button';
@@ -10,6 +13,10 @@ import PasswordField from './PasswordField';
 import { LogInFormInputs } from './types';
 
 const LoginForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +26,7 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<LogInFormInputs> = (data) => {
-    console.log('Log In Data:', data);
+    dispatch(signInUser(data));
   };
 
   return (
@@ -30,8 +37,13 @@ const LoginForm: React.FC = () => {
         <CustomInput placeholder="Email" type="email" register={register('email')} error={errors.email} />
         <PasswordField placeholder="Password" register={register('password')} error={errors.password} />
       </div>
-      <CustomButton type="submit" className="h-[52px] mt-16 w-full py-4 bg-yellow text-white rounded-30">
-        LOG IN
+      {error && <p className="text-red-500 mt-4">{error}</p>}
+      <CustomButton
+        type="submit"
+        className="h-[52px] mt-16 w-full py-4 bg-yellow text-white rounded-30"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Logging in...' : 'LOG IN'}
       </CustomButton>
       <p className="text-lightBlack font-medium text-sm text-center mt-4">
         Don&apos;t have an account?{' '}

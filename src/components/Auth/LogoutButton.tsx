@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@hooks/redux-hooks';
-import { signOutUser } from '@redux/auth/auth-thunk';
+import { signOutUser } from '@redux/users/users-thunk';
 import { LogoutButtonProps } from './types';
 
 const LogoutButton: React.FC<LogoutButtonProps> = ({ className }) => {

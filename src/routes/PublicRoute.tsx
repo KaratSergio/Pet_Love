@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from '@hooks/redux-hooks';
-import { selectUser } from '@redux/auth/auth-selectors';
+import { selectUser } from '@src/redux/users/users-selectors';
 
 const PublicRoute = () => {
   const user = useAppSelector(selectUser);

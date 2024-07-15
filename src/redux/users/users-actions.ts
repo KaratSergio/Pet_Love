@@ -26,3 +26,22 @@ export const signOut = async () => {
   await axios.post(`${API_URL}/users/signout`);
   clearToken();
 };
+
+export const getCurrentUser = async () => {
+  const response = await axios.get(`${API_URL}/users/current`);
+  return response.data;
+};
+
+export const getCurrentUserFull = async () => {
+  const response = await axios.get(`${API_URL}/users/current/full`);
+  return response.data;
+};
+
+export const editCurrentUser = async (formData: FormData) => {
+  const response = await axios.patch(`${API_URL}/users/current/edit`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};

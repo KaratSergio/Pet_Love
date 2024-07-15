@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '@hooks/redux-hooks';
-import { selectUser } from '@redux/auth/auth-selectors';
+import { selectUser } from '@redux/users/users-selectors';
 
 import LogoutButton from '../../Auth/LogoutButton';
 

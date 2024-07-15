@@ -4,6 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from '@schemas/profileSchema';
 import { ProfileFormInput } from './types';
 
+import { useAppDispatch } from '@hooks/redux-hooks';
+import { updateCurrentUser } from '@redux/users/users-thunk';
+
 import CustomInput from '../Custom/Input';
 import CustomButton from '../Custom/Button';
 import Icon from '../Icon/Icon';
@@ -11,6 +14,7 @@ import Icon from '../Icon/Icon';
 const ProfileEdit: React.FC = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -22,7 +26,16 @@ const ProfileEdit: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<ProfileFormInput> = (data) => {
-    console.log(data);
+    const formData = new FormData();
+
+    formData.append('name', data.name || '');
+    formData.append('email', data.email || '');
+    formData.append('phone', data.phoneNumber || '');
+    if (data.photoFile && data.photoFile.length > 0) {
+      formData.append('avatar', data.photoFile[0]);
+    }
+
+    dispatch(updateCurrentUser(formData));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +60,7 @@ const ProfileEdit: React.FC = () => {
   return (
     <div className="flex flex-col p-[50px] w-[480px] rounded-30">
       <p className="text-lg font-bold mb-5">Edit information</p>
-      <div className=" rounded-full size-[86px] m-auto flex items-center justify-center bg-lightYellow">
+      <div className="rounded-full size-[86px] m-auto flex items-center justify-center bg-lightYellow">
         {preview ? (
           <img
             src={preview}
@@ -68,7 +81,7 @@ const ProfileEdit: React.FC = () => {
       <div className="flex gap-2 mt-3">
         <CustomInput
           className="border-yellow w-[216px] h-[42px]"
-          placeholder="path to photo"
+          placeholder="Path to photo"
           register={register('photoPath')}
           error={errors.photoPath}
         />

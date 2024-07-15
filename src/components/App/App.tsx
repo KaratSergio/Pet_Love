@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@hooks/redux-hooks';
@@ -6,7 +7,7 @@ import Layout from '../Layout/Layout';
 
 import Modal from '../Custom/CustomModal/Modal';
 import ModalContent from '../Custom/CustomModal/ModalContent';
-import { closeModal } from '@redux/modal/modalSlice';
+import { closeModal, resetModal } from '@redux/modal/modalSlice';
 import { selectModalIsVisible } from '@redux/modal/selectors';
 
 import PrivateRoute from '@routes/PrivateRoute';
@@ -23,6 +24,10 @@ const Profile = lazy(() => import('@pages/ProfilePage'));
 function App() {
   const isVisible = useAppSelector(selectModalIsVisible);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetModal());
+  }, [dispatch]);
 
   const handleClose = () => {
     dispatch(closeModal());

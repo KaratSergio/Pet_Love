@@ -9,3 +9,7 @@ export interface RegistrationFormInputs {
   password: string;
   confirmPassword: string;
 }
+
+export interface LogoutButtonProps {
+  className?: string;
+}

@@ -16,7 +16,8 @@ const Header: React.FC = () => {
       <Link to="/home" className="text-[28px] font-bold flex items-center">
         petl
         <Icon
-          id="icon-like-on"
+          className="mx-[2px]"
+          id="icon-like"
           color={isHomePage ? 'fill-white' : 'fill-yellow'}
           strokeColor={isHomePage ? 'stroke-white' : 'stroke-yellow'}
         />

@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-export interface ModalProps {
+export interface CustomModalProps {
+  isVisible: boolean;
   onClose: () => void;
-  children?: React.ReactNode;
-  className?: string;
+  children: ReactNode;
 }
 
 export interface ButtonProps {
@@ -20,6 +21,7 @@ export interface InputFieldProps {
   register: UseFormRegisterReturn;
   error?: FieldError;
   type?: string;
+  className?: string;
 }
 
 export interface PasswordInputFieldProps {

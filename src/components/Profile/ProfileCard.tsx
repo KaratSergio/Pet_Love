@@ -1,9 +1,19 @@
-import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import { Link } from 'react-router-dom';
+
+import { useAppDispatch } from '@hooks/redux-hooks';
+import { openModal } from '@redux/modal/modalSlice';
+
 import LogoutButton from '../Auth/LogoutButton';
 import CustomButton from '../Custom/Button';
 
 const ProfileCard: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const handleOpenModal = () => {
+    dispatch(openModal('EditProfile'));
+  };
+
   return (
     <div className="w-full max-w-[520px] bg-white rounded-60 p-10">
       <div className="flex items-start">
@@ -12,7 +22,7 @@ const ProfileCard: React.FC = () => {
           <Icon id="icon-user" width="w-[18px]" height="h-[18px]" color="fill-white" strokeColor="stroke-white" />
         </div>
         <div className="mr-[127px] flex flex-col gap-2">
-          <div className="flex justify-center items-center bg-lightYellow rounded-full w-[110px] h-[110px]">
+          <div className="flex justify-center items-center bg-lightYellow rounded-full size-[110px]">
             <Icon
               id="icon-user-photo"
               width="w-[50px]"
@@ -25,7 +35,8 @@ const ProfileCard: React.FC = () => {
         </div>
         <CustomButton
           type="button"
-          className="flex justify-center items-center bg-lightYellow rounded-full w-[38px] h-[38px]"
+          onClick={handleOpenModal}
+          className="flex justify-center items-center bg-lightYellow rounded-full size-[38px]"
         >
           <Icon id="icon-edit" width="w-[18px]" height="h-[18px]" strokeColor="stroke-yellow" />
         </CustomButton>

@@ -1,1 +1,0 @@
-import{j as e}from"./index-fada8a4d.js";const t=()=>e.jsx("section",{className:"mx-auto w-full max-w-desktop p-8",children:e.jsx("h2",{className:"text-[54px]",children:"My Profile"})});export{t as default};

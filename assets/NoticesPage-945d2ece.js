@@ -1,1 +1,0 @@
-import{j as e}from"./index-ecf0caab.js";const s=()=>e.jsx("section",{className:"mx-auto w-full max-w-desktop p-8",children:e.jsx("h2",{className:"text-[54px]",children:"Find your favorite pet"})});export{s as default};

@@ -33,6 +33,6 @@ export const fetchCurrentUserFull = createAsyncThunk('users/fetchCurrentUserFull
 });
 
 export const updateCurrentUser = createAsyncThunk('users/updateCurrentUser', async (formData: FormData) => {
-  const data = await editCurrentUser(formData);
-  return data;
+  const response = await editCurrentUser(formData);
+  return response.data;
 });

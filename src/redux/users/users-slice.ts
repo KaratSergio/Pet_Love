@@ -53,7 +53,7 @@ const usersSlice = createSlice({
       })
       .addCase(updateCurrentUser.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = { ...state.user, ...action.payload };
       })
       .addMatcher(
         isPending(signInUser, signUpUser, signOutUser, fetchCurrentUser, fetchCurrentUserFull, updateCurrentUser),

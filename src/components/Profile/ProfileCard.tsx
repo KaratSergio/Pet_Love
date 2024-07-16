@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { fetchCurrentUserFull } from '@redux/users/users-thunk';
-import { selectUser } from '@redux/users/users-selectors';
 import Icon from '../Icon/Icon';
 import { Link } from 'react-router-dom';
+import { fetchCurrentUserFull } from '@redux/users/users-thunk';
+import { selectUser } from '@redux/users/users-selectors';
 
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 import { openModal } from '@redux/modal/modalSlice';
 
-import LogoutButton from '../Auth/LogoutButton';
+import LogOutBtn from '../Auth/LogOutBtn';
 import CustomButton from '../Custom/Button';
 
 const ProfileCard: React.FC = () => {
@@ -76,7 +76,7 @@ const ProfileCard: React.FC = () => {
           <Icon id="icon-plus" strokeColor="stroke-white" />
         </Link>
       </div>
-      <LogoutButton className="mt-20 px-[35px] py-[15px] bg-lightYellow rounded-30 font-bold text-yellow" />
+      <LogOutBtn className="mt-20 px-[35px] py-[15px] bg-lightYellow rounded-30 font-bold text-yellow" />
     </div>
   );
 };

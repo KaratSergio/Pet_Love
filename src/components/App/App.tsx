@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@hooks/redux-hooks';
-import Loader from '@helpers/Loader';
 import Layout from '../Layout/Layout';
 
 import Modal from '../Custom/CustomModal/Modal';
@@ -35,24 +34,22 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<Loader loading={true} />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="home" replace />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="profile" element={<Profile />} />
-            </Route>
-            <Route element={<PublicRoute />}>
-              <Route path="login" element={<Login />} />
-              <Route path="registration" element={<Registration />} />
-            </Route>
-            <Route path="home" element={<Home />} />
-            <Route path="news" element={<News />} />
-            <Route path="notices" element={<Notices />} />
-            <Route path="friends" element={<Friends />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="profile" element={<Profile />} />
           </Route>
-        </Routes>
-      </Suspense>
+          <Route element={<PublicRoute />}>
+            <Route path="login" element={<Login />} />
+            <Route path="registration" element={<Registration />} />
+          </Route>
+          <Route path="home" element={<Home />} />
+          <Route path="news" element={<News />} />
+          <Route path="notices" element={<Notices />} />
+          <Route path="friends" element={<Friends />} />
+        </Route>
+      </Routes>
 
       <Modal isVisible={isVisible} onClose={handleClose}>
         <ModalContent />

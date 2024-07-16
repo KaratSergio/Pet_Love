@@ -1,29 +1,26 @@
-import { useLocation, Link } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
-import Icon from '../Icon/Icon';
+import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '@hooks/redux-hooks';
+import { selectUser } from '@redux/users/users-selectors';
+
+import Logo from './NavBar/Logo';
+import Nav from './NavBar/Nav';
+import AuthNav from './NavBar/AuthNav';
+import UserNav from './NavBar/UserNav';
 
 const Header: React.FC = () => {
   const location = useLocation();
-
+  const user = useAppSelector(selectUser);
   const isHomePage = location.pathname === '/home';
 
   return (
     <div
-      className={`w-full max-w-[1280px] p-8 flex items-center justify-between ${
-        isHomePage ? 'bg-yellow rounded-t-[60px]' : 'bg-orange-50'
+      className={`w-full max-w-[1280px] p-16 flex items-center justify-between ${
+        isHomePage ? 'bg-yellow rounded-t-60' : 'bg-orange-50'
       }`}
     >
-      <Link to="/home" className="text-[28px] font-bold flex items-center">
-        petl
-        <Icon
-          className="mx-[2px]"
-          id="icon-like"
-          color={isHomePage ? 'fill-white' : 'fill-yellow'}
-          strokeColor={isHomePage ? 'stroke-white' : 'stroke-yellow'}
-        />
-        ve
-      </Link>
-      <Navbar />
+      <Logo isHomePage={isHomePage} />
+      <Nav />
+      {user ? <UserNav /> : <AuthNav />}
     </div>
   );
 };

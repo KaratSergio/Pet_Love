@@ -16,6 +16,7 @@ const config: Config = {
       },
       colors: {
         lightBlack: 'rgba(38, 38, 38, 0.5)',
+        navBorder: 'rgba(38, 38, 38, 0.15)',
         lightWhite: 'rgba(255, 255, 255, 0.4)',
         yellow: '#F6B83D',
         lightYellow: '#FFF4DF',

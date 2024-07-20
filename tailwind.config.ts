@@ -21,6 +21,8 @@ const config: Config = {
         alfaWhite: 'rgba(255, 255, 255, 0.1)',
         yellow: '#F6B83D',
         lightYellow: '#FFF4DF',
+        check: '#08aa83',
+        error: '#ef2447',
       },
       maxWidth: {
         desktop: '1280px',

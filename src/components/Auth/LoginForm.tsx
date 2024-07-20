@@ -31,11 +31,20 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full bg-white max-w-[592px] py-[118px] px-[84px] rounded-60">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full bg-white max-w-[592px] h-[654px] py-[118px] px-[84px] rounded-60"
+    >
       <h2 className="text-[54px] font-bold">Log in</h2>
       <p className="text-lg font-medium">Welcome! Please enter your credentials to login to the platform:</p>
       <div className="flex flex-col gap-4 mt-8">
-        <CustomInput placeholder="Email" type="email" register={register('email')} error={errors.email} />
+        <CustomInput
+          className="h-[52px]"
+          placeholder="Email"
+          type="email"
+          register={register('email')}
+          error={errors.email}
+        />
         <PasswordField placeholder="Password" register={register('password')} error={errors.password} />
       </div>
       {error && <p className="text-red-500 mt-4">{error}</p>}

@@ -42,6 +42,7 @@ const usersSlice = createSlice({
       .addCase(signOutUser.fulfilled, (state) => {
         state.isLoading = false;
         state.user = null;
+        localStorage.removeItem('token');
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;

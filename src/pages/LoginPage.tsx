@@ -9,9 +9,9 @@ const LoginPage: React.FC = () => {
       <div className="flex gap-8">
         <PetBlock
           images={loginImages}
-          imageWidth="502px"
+          imageWidth="500px"
           imageHeight="630px"
-          className="w-[592px] h-[677px] rounded-60"
+          className="w-[592px] h-[654px] rounded-60"
         />
 
         <LoginForm />

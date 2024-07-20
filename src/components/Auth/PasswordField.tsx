@@ -13,6 +13,7 @@ const PasswordField: React.FC<PasswordInputFieldProps> = ({ placeholder, registe
   return (
     <div className="relative">
       <CustomInput
+        className="h-[52px]"
         placeholder={placeholder}
         type={passwordVisible ? 'text' : 'password'}
         register={register}
@@ -27,6 +28,10 @@ const PasswordField: React.FC<PasswordInputFieldProps> = ({ placeholder, registe
         ) : (
           <Icon id="icon-eye-off" strokeColor="stroke-yellow" />
         )}
+        {/* <Icon
+          id={error ? 'icon-error-x' : 'icon-check'}
+          className="absolute right-10 top-[14px] transform -translate-y-1/2"
+        /> */}
       </div>
     </div>
   );

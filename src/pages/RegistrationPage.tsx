@@ -9,9 +9,9 @@ const RegistrationPage: React.FC = () => {
       <div className="flex gap-8">
         <PetBlock
           images={registerImages}
-          imageWidth="512px"
-          imageHeight="660px"
-          className="w-[592px] h-[703px] rounded-60"
+          imageWidth="480px"
+          imageHeight="600px"
+          className="w-[592px] h-[654px] rounded-60"
         />
 
         <RegistrationForm />

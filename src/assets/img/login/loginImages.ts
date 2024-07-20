@@ -25,7 +25,7 @@ const loginImages = {
     default: loginImgDesktop,
     '2x': loginImgDesktop2x,
     '3x': loginImgDesktop3x,
-    position: { top: '31px', left: '30px' },
+    position: { top: '8px', left: '30px' },
   },
 };
 

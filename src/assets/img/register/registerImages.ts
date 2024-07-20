@@ -25,7 +25,7 @@ const registerImages = {
     default: registerImgDesktop,
     '2x': registerImgDesktop2x,
     '3x': registerImgDesktop3x,
-    position: { top: '26px', left: '40px' },
+    position: { top: '38px', left: '40px' },
   },
 };
 

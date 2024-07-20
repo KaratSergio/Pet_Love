@@ -1,7 +1,7 @@
 export interface ProfileFormInput {
   name?: string;
   email?: string;
-  phoneNumber?: string;
+  phone?: string;
   photoPath?: string;
   photoFile?: FileList;
 }

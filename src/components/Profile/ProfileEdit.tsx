@@ -30,7 +30,8 @@ const ProfileEdit: React.FC = () => {
 
     formData.append('name', data.name || '');
     formData.append('email', data.email || '');
-    formData.append('phone', data.phoneNumber || '');
+    formData.append('phone', data.phone || '');
+
     if (data.photoFile && data.photoFile.length > 0) {
       formData.append('avatar', data.photoFile[0]);
     }
@@ -91,7 +92,7 @@ const ProfileEdit: React.FC = () => {
         <button
           type="button"
           onClick={handleButtonClick}
-          className="flex gap-2 items-center bg-lightYellow rounded-30 px-4 py-3 text-sm"
+          className="flex gap-2 h-[42px] w-[152px] items-center bg-lightYellow rounded-30 px-4 py-3 text-sm"
         >
           Upload photo
           <Icon id="icon-upload-cloud" strokeColor="stroke-yellow" />
@@ -100,18 +101,23 @@ const ProfileEdit: React.FC = () => {
       </div>
       <div className="flex flex-col mt-5 gap-[14px]">
         <form className="flex flex-col gap-[14px]" onSubmit={handleSubmit(onSubmit)}>
-          <CustomInput className="border-yellow" placeholder="Name" register={register('name')} error={errors.name} />
           <CustomInput
-            className="border-yellow"
+            className="border-yellow h-[52px]"
+            placeholder="Name"
+            register={register('name')}
+            error={errors.name}
+          />
+          <CustomInput
+            className="border-yellow h-[52px]"
             placeholder="name@gmail.com"
             register={register('email')}
             error={errors.email}
           />
           <CustomInput
-            className="border-yellow"
+            className="border-yellow h-[52px]"
             placeholder="+380"
-            register={register('phoneNumber')}
-            error={errors.phoneNumber}
+            register={register('phone')}
+            error={errors.phone}
           />
           <CustomButton className="w-full text-white bg-yellow py-4 rounded-30" type="submit">
             Save

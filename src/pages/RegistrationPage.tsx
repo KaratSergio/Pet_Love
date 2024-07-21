@@ -1,7 +1,9 @@
+import registerImages from '@assets/img/register/registerImages';
+import { Link } from 'react-router-dom';
+
 import RegistrationForm from '@components/Auth/RegistrationForm';
 import PetBlock from '@components/Auth/PetBlock';
-
-import registerImages from '@assets/img/register/registerImages';
+import Title from '@components/Custom/Title';
 
 const RegistrationPage: React.FC = () => {
   return (
@@ -14,7 +16,17 @@ const RegistrationPage: React.FC = () => {
           className="w-[592px] h-[654px] rounded-60"
         />
 
-        <RegistrationForm />
+        <div className="bg-white w-[592px] h-[654px] py-[77px] px-[84px] rounded-60">
+          <Title />
+          <RegistrationForm />
+
+          <p className="text-lightBlack font-medium text-sm text-center mt-4">
+            Already have an account?{' '}
+            <Link to="/login" className="text-yellow font-semibold">
+              Login
+            </Link>
+          </p>
+        </div>
       </div>
     </section>
   );

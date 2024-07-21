@@ -1,7 +1,9 @@
+import loginImages from '@assets/img/login/loginImages';
+import { Link } from 'react-router-dom';
+
 import LoginForm from '@components/Auth/LoginForm';
 import PetBlock from '@components/Auth/PetBlock';
-
-import loginImages from '@assets/img/login/loginImages';
+import Title from '@components/Custom/Title';
 
 const LoginPage: React.FC = () => {
   return (
@@ -14,7 +16,17 @@ const LoginPage: React.FC = () => {
           className="w-[592px] h-[654px] rounded-60"
         />
 
-        <LoginForm />
+        <div className="w-full bg-white max-w-[592px] h-[654px] py-[118px] px-[84px] rounded-60">
+          <Title />
+          <LoginForm />
+
+          <p className="text-lightBlack font-medium text-sm text-center mt-4">
+            Don&apos;t have an account?{' '}
+            <Link to="/register" className="text-yellow font-semibold">
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
     </section>
   );

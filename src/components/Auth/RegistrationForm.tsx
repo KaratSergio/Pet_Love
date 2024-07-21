@@ -1,7 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registrationSchema } from '@schemas/authSchemas';
-import { Link } from 'react-router-dom';
 
 import { signUpUser } from '@redux/users/users-thunk';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
@@ -31,9 +30,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white w-[592px] h-[654px] py-[77px] px-[84px] rounded-60">
-      <h2 className="text-[54px] font-bold">Registration</h2>
-      <p className="text-lg font-medium">Thank you for your interest in our platform.</p>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-4 mt-8">
         <CustomInput
           className="h-[52px]"
@@ -64,12 +61,6 @@ const RegistrationForm: React.FC = () => {
       >
         {isLoading ? 'Registering...' : 'REGISTRATION'}
       </CustomButton>
-      <p className="text-lightBlack font-medium text-sm text-center mt-4">
-        Already have an account?{' '}
-        <Link to="/login" className="text-yellow font-semibold">
-          Login
-        </Link>
-      </p>
     </form>
   );
 };

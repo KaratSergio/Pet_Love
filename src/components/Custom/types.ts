@@ -29,3 +29,11 @@ export interface PasswordInputFieldProps {
   register: UseFormRegisterReturn;
   error?: FieldError;
 }
+
+export interface TitleProps {
+  mainTitle?: string;
+  subTitle?: string;
+  className?: string;
+  mainTitleClassName?: string;
+  subTitleClassName?: string;
+}

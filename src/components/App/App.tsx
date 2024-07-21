@@ -17,7 +17,7 @@ const News = lazy(() => import('@pages/NewsPage'));
 const Notices = lazy(() => import('@pages/NoticesPage'));
 const Friends = lazy(() => import('@pages/FriendsPage'));
 const Login = lazy(() => import('@pages/LoginPage'));
-const Registration = lazy(() => import('@pages/RegistrationPage'));
+const Register = lazy(() => import('@pages/RegistrationPage'));
 const Profile = lazy(() => import('@pages/ProfilePage'));
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="login" element={<Login />} />
-            <Route path="registration" element={<Registration />} />
+            <Route path="register" element={<Register />} />
           </Route>
           <Route path="home" element={<Home />} />
           <Route path="news" element={<News />} />

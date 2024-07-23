@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const AuthNav: React.FC = () => {
+const AuthNav: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <ul className="flex">
+    <ul className={`flex ${className}`}>
       <li className="rounded-30 mr-2 flex font-bold text-white bg-yellow hover:bg-lightYellow hover:text-yellow transition duration-300">
         <Link to="/login" className="px-5 py-[15px]">
           LOG IN

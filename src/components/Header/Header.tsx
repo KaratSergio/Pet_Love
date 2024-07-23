@@ -6,6 +6,7 @@ import Logo from './NavBar/Logo';
 import Nav from './NavBar/Nav';
 import AuthNav from './NavBar/AuthNav';
 import UserNav from './NavBar/UserNav';
+import MobNav from './NavBar/MobNav';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -19,8 +20,9 @@ const Header: React.FC = () => {
       }`}
     >
       <Logo isHomePage={isHomePage} />
-      <Nav />
-      {user ? <UserNav /> : <AuthNav />}
+      <Nav className="hidden lg:flex" />
+      {user ? <UserNav className="hidden lg:flex" /> : <AuthNav className="hidden lg:flex" />}
+      <MobNav className="block lg:hidden" />
     </div>
   );
 };

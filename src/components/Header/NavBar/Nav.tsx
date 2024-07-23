@@ -1,13 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 
-const Nav: React.FC = () => {
+const Nav: React.FC<{ className?: string }> = ({ className }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/home';
   const linkClasses = isHomePage ? 'text-white border-lightWhite' : 'border-navBorder';
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <ul className="flex font-medium">
+    <ul className={`flex font-medium ${className}`}>
       <li
         className={`mr-[10px] flex border rounded-30 ${
           isActive('/news') ? 'border-yellow' : linkClasses

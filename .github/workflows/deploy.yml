@@ -5,6 +5,8 @@ on:
     branches: [main]
 env:
   VITE_URL_DATABASE: ${{ secrets.VITE_URL_DATABASE }}
+  VITE_CLOUDINARY_URL: ${{ secrets.VITE_CLOUDINARY_URL }}
+  VITE_CLOUDINARY_PRESET: ${{ secrets.VITE_CLOUDINARY_PRESET }}
 
 jobs:
   build-and-deploy:

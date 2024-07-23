@@ -23,6 +23,7 @@ const handlePending = (state: UserState) => {
 const handleRejected = (state: UserState, action: any) => {
   state.isLoading = false;
   state.error = action.error.message || 'Request failed';
+  console.error('Error in reducer:', action.error);
 };
 
 const usersSlice = createSlice({

@@ -50,11 +50,16 @@ export const getCurrentUserFull = async () => {
   return response.data;
 };
 
-export const editCurrentUser = async (formData: FormData) => {
-  const response = await axios.patch(`${API_URL}/users/current/edit`, formData, {
+export const editCurrentUser = async (data: { name: string; email: string; phone: string; avatar?: string }) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    setToken(token);
+  }
+
+  const response = await axios.patch(`${API_URL}/users/current/edit`, data, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   });
-  return response.data;
+  return response;
 };

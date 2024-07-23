@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { signIn, signUp, signOut, getCurrentUser, getCurrentUserFull, editCurrentUser } from './users-actions';
 
 export const signInUser = createAsyncThunk(
@@ -32,7 +33,19 @@ export const fetchCurrentUserFull = createAsyncThunk('users/fetchCurrentUserFull
   return data;
 });
 
-export const updateCurrentUser = createAsyncThunk('users/updateCurrentUser', async (formData: FormData) => {
-  const response = await editCurrentUser(formData);
-  return response.data;
-});
+export const updateCurrentUser = createAsyncThunk(
+  'users/updateCurrentUser',
+  async (formData: { name: string; email: string; phone: string; avatar?: string }, { rejectWithValue }) => {
+    try {
+      const response = await editCurrentUser(formData);
+
+      return response.data;
+    } catch (error: any) {
+      console.error('Error in updateCurrentUser:', error);
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data);
+      }
+      return rejectWithValue('Unexpected error');
+    }
+  }
+);

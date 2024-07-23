@@ -4,3 +4,7 @@ export interface ProfileFormInput {
   phone?: string;
   avatar?: FileList;
 }
+
+export interface ProfileEditProps {
+  onClose: () => void;
+}

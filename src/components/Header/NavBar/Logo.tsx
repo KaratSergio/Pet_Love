@@ -4,10 +4,13 @@ import { LogoProps } from './types';
 
 const Logo: React.FC<LogoProps> = ({ isHomePage }) => {
   return (
-    <Link to="/home" className={`text-[28px] font-bold flex items-end text-center ${isHomePage ? 'text-white' : ''}`}>
+    <Link
+      to="/home"
+      className={`text-[28px] h-[50px] font-bold flex items-center text-center ${isHomePage ? 'text-white' : ''}`}
+    >
       petl
       <Icon
-        className="mx-[2px] mb-2"
+        className="mx-[2px] mt-2"
         id="icon-like"
         color={isHomePage ? 'fill-white' : 'fill-yellow'}
         strokeColor={isHomePage ? 'stroke-white' : 'stroke-yellow'}

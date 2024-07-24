@@ -9,52 +9,76 @@ import AuthNav from './AuthNav';
 import UserNav from './UserNav';
 
 const MobNav: React.FC<{ className?: string }> = ({ className }) => {
-  const location = useLocation();
-  const isActive = (path: string) => location.pathname === path;
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
   const user = useAppSelector(selectUser);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const location = useLocation();
+  const isHomePage = location.pathname === '/home';
+  const isActive = (path: string) => location.pathname === path;
+
+  const bgClass = !isHomePage ? 'bg-yellow' : 'bg-white';
+  const closeIconStroke = !isHomePage ? 'stroke-white' : 'stroke-black';
+  const menuIconStroke = isHomePage ? 'stroke-white' : 'stroke-black';
+  const textClass = !isHomePage ? 'text-white' : 'text-mainBlack';
+
+  const getLinkClasses = (path: string) => {
+    const activeClass = isActive(path) ? (!isHomePage ? 'border-white' : 'border-yellow') : 'border-gray-300';
+    return `border rounded-30 ${activeClass} ${textClass}`;
+  };
 
   return (
     <>
       {/* burger-btn */}
       <button
         onClick={toggleMenu}
-        className="fixed top-4 right-4 p-2 text-white rounded-full lg:hidden"
+        className="fixed top-10 right-8  text-white rounded-full lg:hidden"
         aria-label="Open menu"
       >
-        <Icon id="icon-menu" color="fill-white" />
+        <Icon id="icon-menu" strokeColor={menuIconStroke} width="w-9" height="h-9" />
       </button>
 
-      {/* mob-menu*/}
+      {/* mob-menu */}
       <div
-        className={`fixed top-0 right-0 z-40 w-3/4 h-full bg-white shadow-lg transition-transform duration-300 ease-in-out transform ${
+        className={`flex flex-col items-center justify-end py-10 w-[218px] sm:w-[374px] fixed top-0 right-0 z-40 h-full shadow-lg transition-transform duration-300 ease-in-out transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } ${className}`}
+        } ${className} ${bgClass}`}
       >
-        <button onClick={toggleMenu} className="absolute top-4 right-4 p-2 text-gray-800" aria-label="Close menu">
-          <Icon id="icon-close" color="fill-black" />
+        <button onClick={toggleMenu} className="absolute top-4 right-4 p-2" aria-label="Close menu">
+          <Icon id="icon-close" strokeColor={closeIconStroke} width="w-9" height="h-9" />
         </button>
-        <ul className="flex flex-col items-start p-4 font-medium">
-          <li className={`mb-4 w-full ${isActive('/news') ? 'border-yellow' : 'border-gray-300'} border rounded-lg`}>
-            <Link to="/news" className="block w-full px-5 py-3" onClick={toggleMenu}>
+
+        <ul className="flex flex-col gap-[10px] marker:font-medium">
+          <li className={getLinkClasses('/news')}>
+            <Link to="/news" className="flex justify-center items-center px-5 py-[15px] h-[50px]" onClick={toggleMenu}>
               News
             </Link>
           </li>
-          <li className={`mb-4 w-full ${isActive('/notices') ? 'border-yellow' : 'border-gray-300'} border rounded-lg`}>
-            <Link to="/notices" className="block w-full px-5 py-3" onClick={toggleMenu}>
+          <li className={getLinkClasses('/notices')}>
+            <Link
+              to="/notices"
+              className="flex justify-center items-center px-5 py-[15px] h-[50px]"
+              onClick={toggleMenu}
+            >
               Find pet
             </Link>
           </li>
-          <li className={`w-full ${isActive('/friends') ? 'border-yellow' : 'border-gray-300'} border rounded-lg`}>
-            <Link to="/friends" className="block w-full px-5 py-3" onClick={toggleMenu}>
+          <li className={getLinkClasses('/friends')}>
+            <Link
+              to="/friends"
+              className="flex justify-center items-center px-5 py-[15px] h-[50px]"
+              onClick={toggleMenu}
+            >
               Our friends
             </Link>
           </li>
         </ul>
 
-        {user ? <UserNav className="flex flex-col p-4" /> : <AuthNav className="flex flex-col p-4" />}
+        {user ? (
+          <UserNav className="mt-[395px]" />
+        ) : (
+          <AuthNav className="mt-[395px] flex flex-col items-center gap-2 sm:flex-row sm:gap-[10px]" />
+        )}
       </div>
     </>
   );

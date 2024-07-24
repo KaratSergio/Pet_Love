@@ -15,13 +15,13 @@ const Header: React.FC = () => {
 
   return (
     <div
-      className={`w-full max-w-[1280px] p-16 flex items-center justify-between ${
+      className={`w-full max-w-[1280px] p-8 flex items-center justify-between ${
         isHomePage ? 'bg-yellow rounded-t-60' : 'bg-orange-50'
       }`}
     >
       <Logo isHomePage={isHomePage} />
       <Nav className="hidden lg:flex" />
-      {user ? <UserNav className="hidden lg:flex" /> : <AuthNav className="hidden lg:flex" />}
+      {user ? <UserNav className="hidden sm:flex" /> : <AuthNav className="hidden sm:flex sm:mr-[54px]" />}
       <MobNav className="block lg:hidden" />
     </div>
   );

@@ -13,7 +13,7 @@ const Nav: React.FC<{ className?: string }> = ({ className }) => {
           isActive('/news') ? 'border-yellow' : linkClasses
         } hover:border-yellow focus:border-yellow`}
       >
-        <Link to="/news" className="px-5 py-[15px]">
+        <Link to="/news" className="px-5 py-[15px] flex justify-center items-center h-[50px]">
           News
         </Link>
       </li>
@@ -22,7 +22,7 @@ const Nav: React.FC<{ className?: string }> = ({ className }) => {
           isActive('/notices') ? 'border-yellow' : linkClasses
         } hover:border-yellow focus:border-yellow`}
       >
-        <Link to="/notices" className="px-5 py-[15px]">
+        <Link to="/notices" className="px-5 py-[15px] flex justify-center items-center h-[50px]">
           Find pet
         </Link>
       </li>
@@ -31,7 +31,7 @@ const Nav: React.FC<{ className?: string }> = ({ className }) => {
           isActive('/friends') ? 'border-yellow' : linkClasses
         } hover:border-yellow focus:border-yellow`}
       >
-        <Link to="/friends" className="px-5 py-[15px]">
+        <Link to="/friends" className="px-5 py-[15px] flex justify-center items-center h-[50px]">
           Our friends
         </Link>
       </li>

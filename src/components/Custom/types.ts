@@ -37,3 +37,9 @@ export interface TitleProps {
   mainTitleClassName?: string;
   subTitleClassName?: string;
 }
+
+export interface LinkToProps {
+  to: string;
+  className?: string;
+  children: React.ReactNode;
+}

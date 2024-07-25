@@ -15,7 +15,7 @@ const Header: React.FC = () => {
 
   return (
     <div
-      className={`w-full max-w-[1280px] pt-[18px] px-5 sm:pt-4 sm:px-8 lg:px-16 flex items-center justify-between ${
+      className={`w-full max-w-[1280px] pt-[18px] px-5 sm:pt-4 sm:px-8 lg:px-16 lg:pt-8 flex items-center justify-between ${
         isHomePage ? 'bg-yellow rounded-t-30 sm:rounded-t-60' : 'bg-orange-50'
       }`}
     >

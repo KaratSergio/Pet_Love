@@ -2,7 +2,7 @@ import Title from '@components/Custom/Title';
 
 const NewsPage: React.FC = () => {
   return (
-    <section className="m-auto max-w-desktop p-8">
+    <section className="m-auto max-w-desktop p-8 bg-orange-50">
       <Title />
     </section>
   );

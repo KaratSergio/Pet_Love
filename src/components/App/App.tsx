@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
 import { lazy } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@hooks/redux-hooks';
-import Layout from '../Layout/Layout';
 
 import Modal from '../Custom/CustomModal/Modal';
 import ModalContent from '../Custom/CustomModal/ModalContent';
 import { closeModal, resetModal } from '@redux/modal/modalSlice';
 import { selectModalIsVisible } from '@redux/modal/selectors';
 
+import Layout from '../Layout/Layout';
 import PrivateRoute from '@routes/PrivateRoute';
 import PublicRoute from '@routes/PublicRoute';
 
@@ -19,6 +19,7 @@ const Friends = lazy(() => import('@pages/FriendsPage'));
 const Login = lazy(() => import('@pages/LoginPage'));
 const Register = lazy(() => import('@pages/RegistrationPage'));
 const Profile = lazy(() => import('@pages/ProfilePage'));
+const NotFound = lazy(() => import('@src/pages/NotFoundPage'));
 
 function App() {
   const isVisible = useAppSelector(selectModalIsVisible);
@@ -48,6 +49,8 @@ function App() {
           <Route path="news" element={<News />} />
           <Route path="notices" element={<Notices />} />
           <Route path="friends" element={<Friends />} />
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
 

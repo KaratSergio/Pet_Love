@@ -40,7 +40,6 @@ const config: Config = {
         sm: '576px',
         md: '768px',
         lg: '920px',
-
         xl: '1280px',
       },
     },

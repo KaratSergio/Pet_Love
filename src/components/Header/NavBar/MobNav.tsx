@@ -32,10 +32,10 @@ const MobNav: React.FC<{ className?: string }> = ({ className }) => {
       {/* burger-btn */}
       <button
         onClick={toggleMenu}
-        className="fixed top-10 right-8  text-white rounded-full lg:hidden"
+        className="absolute top-8 right-10 sm:right-[60px] sm:top-[40px]  text-white rounded-full lg:hidden"
         aria-label="Open menu"
       >
-        <Icon id="icon-menu" strokeColor={menuIconStroke} width="w-9" height="h-9" />
+        <Icon id="icon-menu" strokeColor={menuIconStroke} width="w-8" height="h-8" />
       </button>
 
       {/* mob-menu */}
@@ -45,7 +45,7 @@ const MobNav: React.FC<{ className?: string }> = ({ className }) => {
         } ${className} ${bgClass}`}
       >
         <button onClick={toggleMenu} className="absolute top-4 right-4 p-2" aria-label="Close menu">
-          <Icon id="icon-close" strokeColor={closeIconStroke} width="w-9" height="h-9" />
+          <Icon id="icon-close" strokeColor={closeIconStroke} width="w-8" height="h-8" />
         </button>
 
         <ul className="flex flex-col gap-[10px] marker:font-medium">

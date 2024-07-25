@@ -36,9 +36,11 @@ const config: Config = {
         '60': '60px',
       },
       screens: {
+        mob: '375px',
         sm: '576px',
         md: '768px',
-        lg: '876px',
+        lg: '920px',
+
         xl: '1280px',
       },
     },

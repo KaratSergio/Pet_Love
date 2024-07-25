@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 
 const Layout: React.FC = () => {
   return (
-    <div className="m-auto max-w-desktop py-[10px] px-5 sm:px-8 sm:py-4">
+    <div className="m-auto max-w-desktop ">
       <Header />
       <Suspense fallback={<Loader loading={true} />}>
         <Outlet />

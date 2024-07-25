@@ -2,7 +2,7 @@ import loginImages from '@assets/img/login/loginImages';
 import { Link } from 'react-router-dom';
 
 import LoginForm from '@components/Auth/LoginForm';
-import PetBlock from '@components/Auth/PetBlock';
+import PetBlock from '@components/Custom/PetBlock';
 import Title from '@components/Custom/Title';
 
 const LoginPage: React.FC = () => {
@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
           images={loginImages}
           imageWidth="500px"
           imageHeight="630px"
-          className="w-[592px] h-[654px] rounded-60"
+          className="w-full max-w-[592px] h-[654px] rounded-60"
         />
 
         <div className="w-full bg-white max-w-[592px] h-[654px] py-[118px] px-[84px] rounded-60">

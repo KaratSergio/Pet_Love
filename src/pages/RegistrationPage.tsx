@@ -2,7 +2,7 @@ import registerImages from '@assets/img/register/registerImages';
 import { Link } from 'react-router-dom';
 
 import RegistrationForm from '@components/Auth/RegistrationForm';
-import PetBlock from '@components/Auth/PetBlock';
+import PetBlock from '@components/Custom/PetBlock';
 import Title from '@components/Custom/Title';
 
 const RegistrationPage: React.FC = () => {

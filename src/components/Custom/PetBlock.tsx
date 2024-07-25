@@ -12,7 +12,7 @@ const PetBlock: React.FC<PetBlockProps> = ({
     <div className={`relative bg-yellow p-4 ${className}`} style={style}>
       <Icon
         id="icon-rectangle"
-        width="w-[522px]"
+        width="w-[512px]"
         height="h-[715px]"
         color="fill-alfaWhite"
         strokeColor="stroke-inherit"

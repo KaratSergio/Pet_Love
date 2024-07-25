@@ -1,4 +1,4 @@
-import homeImages from '@assets/img/homePage/homeImages';
+import homeImages from '@src/assets/img/homepage/homeImages';
 
 const HomeImage: React.FC = () => {
   return (

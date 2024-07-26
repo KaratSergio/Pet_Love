@@ -19,6 +19,7 @@ const Friends = lazy(() => import('@pages/FriendsPage'));
 const Login = lazy(() => import('@pages/LoginPage'));
 const Register = lazy(() => import('@pages/RegistrationPage'));
 const Profile = lazy(() => import('@pages/ProfilePage'));
+const AddPet = lazy(() => import('@pages/AddPetPage'));
 const NotFound = lazy(() => import('@src/pages/NotFoundPage'));
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route index element={<Navigate to="home" replace />} />
           <Route element={<PrivateRoute />}>
             <Route path="profile" element={<Profile />} />
+            <Route path="add-pet" element={<AddPet />} />
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="login" element={<Login />} />

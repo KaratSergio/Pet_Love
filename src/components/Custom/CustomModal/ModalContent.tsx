@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from '@hooks/redux-hooks';
 import { selectModalContent } from '@redux/modal/selectors';
 import { closeModal } from '@redux/modal/modalSlice';
 
-import ProfileEdit from '@components/Profile/ProfileEdit';
+import ModalEditUser from '../../Profile/UserCard/ModalEditUser/ModalEditUser';
 
 const ModalContent: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const ModalContent: React.FC = () => {
 
   switch (modalContent.content) {
     case 'EditProfile':
-      return <ProfileEdit onClose={handleClose} />;
+      return <ModalEditUser onClose={handleClose} />;
     default:
       return null;
   }

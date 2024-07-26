@@ -3,16 +3,16 @@ import { useForm, SubmitHandler, Resolver } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from '@schemas/profileSchema';
 
-import { ProfileFormInput, ProfileEditProps } from './types';
+import { ProfileFormInput, ProfileEditProps } from '../../types';
 import { selectUser } from '@redux/users/users-selectors';
 import { updateCurrentUser } from '@redux/users/users-thunk';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 
-import CustomInput from '../Custom/Input';
-import CustomButton from '../Custom/Button';
-import Icon from '../Icon/Icon';
+import CustomInput from '@components/Custom/Input';
+import CustomButton from '@components/Custom/Button';
+import Icon from '@components/Icon/Icon';
 
-const ProfileEdit: React.FC<ProfileEditProps> = ({ onClose }) => {
+const ModalEditUser: React.FC<ProfileEditProps> = ({ onClose }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [cloudinaryImageUrl, setCloudinaryImageUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -165,4 +165,4 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ onClose }) => {
   );
 };
 
-export default ProfileEdit;
+export default ModalEditUser;

@@ -11,6 +11,7 @@ import { selectModalIsVisible } from '@redux/modal/selectors';
 import Layout from '../Layout/Layout';
 import PrivateRoute from '@routes/PrivateRoute';
 import PublicRoute from '@routes/PublicRoute';
+import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('@pages/HomePage'));
 const News = lazy(() => import('@pages/NewsPage'));
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="home" replace />} />

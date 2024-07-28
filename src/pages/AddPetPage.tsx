@@ -1,5 +1,6 @@
 import PetBlock from '@components/Custom/PetBlock';
-import addPetImages from '@src/assets/img/addPetPage/addPetImages';
+import addPetImages from '@assets/img/addPetPage/addPetImages';
+import AddPetForm from '@components/AddPetForm/AddPetFrom';
 
 const AddPetPage: React.FC = () => {
   return (
@@ -11,6 +12,8 @@ const AddPetPage: React.FC = () => {
           imageHeight="630px"
           className="w-full max-w-[592px] h-[654px] rounded-60"
         />
+
+        <AddPetForm />
       </div>
     </section>
   );

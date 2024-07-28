@@ -1,0 +1,1 @@
+import{j as s}from"./index-2797b0bd.js";import{T as t}from"./Title-48156c5e.js";const a=()=>s.jsx("section",{className:"mx-auto w-full max-w-desktop p-8 bg-orange-50",children:s.jsx(t,{})});export{a as default};

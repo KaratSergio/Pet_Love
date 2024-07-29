@@ -2,17 +2,18 @@ import Icon from '../Icon/Icon';
 
 interface RadioButtonsProps {
   setSexPet: (sex: string) => void;
+  className?: string;
   //   sexPet: string;
 }
 
-const RadioButtons: React.FC<RadioButtonsProps> = ({ setSexPet }) => {
+const RadioButtons: React.FC<RadioButtonsProps> = ({ setSexPet, className }) => {
   const handleChooseSex = (e: React.MouseEvent<HTMLLIElement>) => {
     const choosenValue = e.currentTarget.dataset.value!;
     setSexPet(choosenValue);
   };
 
   return (
-    <ul className="flex gap-2">
+    <ul className={`flex gap-2 ${className}`}>
       <li
         className="flex items-center justify-center bg-lightRed rounded-full size-10"
         data-value="female"

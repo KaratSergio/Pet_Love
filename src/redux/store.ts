@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 import usersReducer from './users/users-slice';
 import modalReducer from './modal/modalSlice';
+import friendsReducer from './friends/friends-slice';
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   users: usersReducer,
   modal: modalReducer,
+  friends: friendsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

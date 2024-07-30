@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signIn, signUp, signOut, getCurrentUser, getCurrentUserFull, editCurrentUser } from './users-actions';
 
 export const signInUser = createAsyncThunk(

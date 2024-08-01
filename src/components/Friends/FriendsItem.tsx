@@ -53,7 +53,7 @@ const FriendsItem: React.FC<FriendsItemProps> = ({ friend }) => {
           </li>
         </ul>
       </div>
-      <div className="absolute top-3 right-3 rounded-30 bg-lightYellow p-2">
+      <div className="absolute top-3 right-3 rounded-30 bg-lightYellow text-yellow text-sm p-2">
         {renderWorkDays()}
         <p>{hours}</p>
       </div>

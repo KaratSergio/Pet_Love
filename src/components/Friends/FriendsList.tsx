@@ -13,7 +13,7 @@ const FriendsList: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="friends-list grid gap-4">
+    <div className="flex flex-wrap justify-center gap-x-5 gap-y-7 mt-[60px]">
       {friends.map((friend) => (
         <FriendsItem key={friend._id} friend={friend} />
       ))}

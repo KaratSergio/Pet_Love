@@ -5,36 +5,55 @@ const FriendsItem: React.FC<FriendsItemProps> = ({ friend }) => {
 
   const renderWorkDays = () => {
     if (!workDays || workDays.length === 0) {
-      return <p>No work hours available</p>;
+      return <p>Day and night</p>;
     }
 
-    return workDays.map((day) => {
-      if (day.isOpen) {
-        return (
-          <p key={day._id}>
-            {day.from} - {day.to}
-          </p>
-        );
-      }
-      return <p key={day._id}>Closed</p>;
-    });
+    const openDay = workDays.find((day) => day.isOpen);
+
+    if (openDay) {
+      return (
+        <p>
+          {openDay.from} - {openDay.to}
+        </p>
+      );
+    }
+
+    return <p>Closed</p>;
   };
 
+  // Create email with @gmail.com if email is missing
+  const displayEmail = email || (title ? `${title.replace(/\s+/g, '').toLowerCase()}@gmail.com` : 'No email available');
+
   return (
-    <div className="friend-item p-4 border rounded shadow-sm">
-      <img src={imageUrl || logo} alt={`${name} logo`} className="mb-2" />
-      <h3 className="text-xl font-bold">{title || name}</h3>
-      <a href={addressUrl} target="_blank" rel="noopener noreferrer" className="block text-blue-500 hover:underline">
-        {address}
-      </a>
-      <a href={`mailto:${email}`} className="block text-blue-500 hover:underline">
-        {email}
-      </a>
-      <a href={`tel:${phone}`} className="block text-blue-500 hover:underline">
-        {phone}
-      </a>
-      <div className="work-hours mt-2">
-        <h4 className="font-bold">Work Hours:</h4>
+    <div className="w-[371px] leading-[26px] tracking-[-0.04em] py-10 px-5 rounded-[15px] bg-white flex gap-5 relative">
+      <img src={imageUrl || logo} alt={`${name} logo`} className="size-[90px]" />
+      <div>
+        <h3 className="text-xl font-bold mb-3">{title || name}</h3>
+        <ul className="space-y-2">
+          <li>
+            <a href={`mailto:${displayEmail}`} className="block text-sm hover:underline">
+              <span className="text-sm text-lightBlack font-medium">Email:</span> {displayEmail}
+            </a>
+          </li>
+          <li>
+            <a
+              href={addressUrl || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-[220px] text-sm hover:underline overflow-hidden text-ellipsis whitespace-nowrap"
+              title={address || 'website only'}
+            >
+              <span className="text-sm text-lightBlack font-medium">Address:</span> {address || 'website only'}
+            </a>
+          </li>
+          <li>
+            <a href={`tel:${phone || '#'}`} className="block text-sm hover:underline">
+              <span className="text-sm text-lightBlack font-medium">Phone:</span> {phone || 'email only'}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="absolute top-3 right-3 rounded-30 bg-lightYellow p-2">
         {renderWorkDays()}
         <p>{hours}</p>
       </div>

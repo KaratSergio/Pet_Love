@@ -7,16 +7,16 @@ import Title from '@components/Custom/Title';
 
 const LoginPage: React.FC = () => {
   return (
-    <section className="mx-auto bg-orange-50 p-8">
-      <div className="flex gap-8">
+    <section className="mx-auto bg-orange-50 p-4 md:p-8">
+      <div className="flex flex-col gap-4 xl:flex-row md:gap-8">
         <PetBlock
           images={loginImages}
-          imageWidth="500px"
-          imageHeight="630px"
-          className="w-full max-w-[592px] h-[654px] rounded-60"
+          imageWidth="100%"
+          imageHeight="100%"
+          className="w-full mx-auto sm:max-w-[592px] h-[302px] xl:h-[654px] rounded-60 mobile:h-[280px] mobile-adaptive:h-[280px] max-w-[335px]"
         />
 
-        <div className="w-full bg-white max-w-[592px] h-[654px] py-[118px] px-[84px] rounded-60">
+        <div className="w-full mx-auto  max-w-[335px] bg-white sm:max-w-[592px] xl:h-[654px] py-8 px-4 md:py-[118px] md:px-[84px] rounded-60">
           <Title />
           <LoginForm />
 

@@ -8,15 +8,15 @@ import Title from '@components/Custom/Title';
 const RegistrationPage: React.FC = () => {
   return (
     <section className="mx-auto bg-orange-50 p-8">
-      <div className="flex gap-8">
+      <div className="flex flex-col gap-4 xl:flex-row md:gap-8">
         <PetBlock
           images={registerImages}
           imageWidth="480px"
           imageHeight="600px"
-          className="w-[592px] h-[654px] rounded-60"
+          className="w-full mx-auto sm:max-w-[592px] h-[302px] xl:h-[654px] rounded-60 mobile:h-[280px] mobile-adaptive:h-[280px] max-w-[335px]"
         />
 
-        <div className="bg-white w-[592px] h-[654px] py-[77px] px-[84px] rounded-60">
+        <div className="w-full mx-auto  max-w-[335px] bg-white sm:max-w-[592px] xl:h-[654px] py-8 px-4 md:py-[118px] md:px-[84px] rounded-60">
           <Title />
           <RegistrationForm />
 

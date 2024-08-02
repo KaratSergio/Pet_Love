@@ -3,8 +3,7 @@ import { PetBlockProps } from './types';
 
 const PetBlock: React.FC<PetBlockProps> = ({
   images,
-  imageWidth = '100%',
-  imageHeight = '100%',
+
   className = '',
   style = {},
 }) => {
@@ -12,13 +11,14 @@ const PetBlock: React.FC<PetBlockProps> = ({
     <div className={`relative bg-yellow p-4 ${className}`} style={style}>
       <Icon
         id="icon-rectangle"
-        width="w-[512px]"
-        height="h-[715px]"
+        width="w-full"
+        height="h-full"
         color="fill-alfaWhite"
         strokeColor="stroke-inherit"
-        className="absolute z-20 top-3 left-10"
+        className="absolute z-20 top-3 left-1"
+        style={{ transform: 'scale(0.9)' }}
       />
-      <picture className="absolute z-30" style={{ width: imageWidth, height: imageHeight }}>
+      <picture className="absolute z-30 w-full h-full">
         <source
           srcSet={`${images.mobile.default} 1x, ${images.mobile['2x']} 2x, ${images.mobile['3x']} 3x`}
           media="(max-width: 374px)"
@@ -42,7 +42,7 @@ const PetBlock: React.FC<PetBlockProps> = ({
         <img
           src={images.desktop.default}
           alt="Background"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           style={{
             position: 'absolute',
             top: images.desktop.position.top,

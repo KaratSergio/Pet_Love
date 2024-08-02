@@ -25,7 +25,7 @@ const addPetImages = {
     default: addPetImgDesktop,
     '2x': addPetImgDesktop2x,
     '3x': addPetImgDesktop3x,
-    position: { top: '8px', left: '30px' },
+    position: { top: '-16px', left: '-25px' },
   },
 };
 

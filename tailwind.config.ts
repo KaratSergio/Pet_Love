@@ -43,6 +43,10 @@ const config: Config = {
         '60': '60px',
       },
       screens: {
+        mobile: { min: '320px', max: '374px' },
+        'mobile-adaptive': { min: '375px', max: '767px' },
+        tablet: '768px',
+        desktop: '1280px',
         mob: '375px',
         sm: '576px',
         md: '768px',

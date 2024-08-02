@@ -13,19 +13,19 @@ const loginImages = {
     default: loginImgMobile,
     '2x': loginImgMobile2x,
     '3x': loginImgMobile3x,
-    position: { top: '8px', left: '0px' },
+    position: { top: '-10px', left: '0px' },
   },
   tablet: {
     default: loginImgTablet,
     '2x': loginImgTablet2x,
     '3x': loginImgTablet3x,
-    position: { top: '8px', left: '0px' },
+    position: { top: '-10px', left: '0px' },
   },
   desktop: {
     default: loginImgDesktop,
     '2x': loginImgDesktop2x,
     '3x': loginImgDesktop3x,
-    position: { top: '8px', left: '30px' },
+    position: { top: '-16px', left: '-25px' },
   },
 };
 

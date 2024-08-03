@@ -13,7 +13,7 @@ const PasswordField: React.FC<PasswordInputFieldProps> = ({ placeholder, registe
   return (
     <div className="relative">
       <CustomInput
-        className="h-[52px]"
+        className="h-[42px] md:h-[52px] text-sm md:text-base"
         placeholder={placeholder}
         type={passwordVisible ? 'text' : 'password'}
         register={register}

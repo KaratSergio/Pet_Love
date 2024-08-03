@@ -33,14 +33,14 @@ const RegistrationForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-4 mt-8">
         <CustomInput
-          className="h-[52px]"
+          className="h-[42px] md:h-[52px] text-sm md:text-base"
           placeholder="Name"
           type="text"
           register={register('name')}
           error={errors.name}
         />
         <CustomInput
-          className="h-[52px]"
+          className="h-[42px] md:h-[52px] text-sm md:text-base"
           placeholder="Email"
           type="email"
           register={register('email')}
@@ -56,7 +56,7 @@ const RegistrationForm: React.FC = () => {
       {error && <p className="text-red-500 mt-4">{error}</p>}
       <CustomButton
         type="submit"
-        className="h-[52px] mt-8 w-full py-4 bg-yellow text-white rounded-30"
+        className="h-[42px] md:h-[52px] mt-8 w-full bg-yellow text-white rounded-30"
         disabled={isLoading}
       >
         {isLoading ? 'Registering...' : 'REGISTRATION'}

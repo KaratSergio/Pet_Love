@@ -31,7 +31,7 @@ const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 mt-8">
       <CustomInput
-        className="h-[52px]"
+        className="h-[42px] md:h-[52px] text-sm md:text-base"
         placeholder="Email"
         type="email"
         register={register('email')}
@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
       {error && <p className="text-red-500 mt-4">{error}</p>}
       <CustomButton
         type="submit"
-        className="h-[52px] mt-16 w-full py-4 bg-yellow text-white rounded-30"
+        className="h-[42px] md:h-[52px] mt-16 w-full bg-yellow text-white rounded-30 text-sm md:text-base"
         disabled={isLoading}
       >
         {isLoading ? 'Logging in...' : 'LOG IN'}

@@ -46,9 +46,9 @@ const Title: React.FC<TitleProps> = ({
 
   const {
     mainTitle: finalMainTitle,
-    mainTitleClassName: finalMainTitleClassName,
     subTitle: finalSubTitle,
-    subTitleClassName: finalSubTitleClassName,
+    mainTitleClassName: finalMainTitleClassName = mainTitleClassName,
+    subTitleClassName: finalSubTitleClassName = subTitleClassName,
   } = getTitleConfig();
 
   return (

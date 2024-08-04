@@ -1,6 +1,6 @@
 export interface Notice {
-  id: string;
-  image: string;
+  _id: string;
+  imgURL: string;
   title: string;
   popularity: number;
   petName: string;
@@ -33,11 +33,16 @@ export interface Location {
 }
 
 export interface NoticesState {
-  notices: Notice[];
+  notices: {
+    page: number;
+    perPage: number;
+    totalPages: number;
+    results: Notice[];
+  };
   categories: Category[];
   sexes: Sex[];
   species: Species[];
-  locations: Location[];
+  cities: Location[];
   isLoading: boolean;
   error: string | null;
 }

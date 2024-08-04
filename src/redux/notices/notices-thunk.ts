@@ -3,9 +3,11 @@ import {
   fetchCategories,
   fetchSexes,
   fetchSpecies,
-  fetchLocations,
   fetchNotices,
-  toggleFavoriteNotice,
+  fetchNoticeById,
+  addFavoriteNotice,
+  removeFavoriteNotice,
+  fetchCities,
 } from './notices-actions';
 
 export const fetchCategoriesThunk = createAsyncThunk('notices/fetchCategories', async () => {
@@ -23,17 +25,27 @@ export const fetchSpeciesThunk = createAsyncThunk('notices/fetchSpecies', async 
   return data;
 });
 
-export const fetchLocationsThunk = createAsyncThunk('notices/fetchLocations', async () => {
-  const data = await fetchLocations();
-  return data;
-});
-
 export const fetchNoticesThunk = createAsyncThunk('notices/fetchNotices', async () => {
   const data = await fetchNotices();
   return data;
 });
 
-export const toggleFavoriteNoticeThunk = createAsyncThunk('notices/toggleFavoriteNotice', async (noticeId: string) => {
-  const data = await toggleFavoriteNotice(noticeId);
+export const fetchNoticeByIdThunk = createAsyncThunk('notices/fetchNoticeById', async (noticeId: string) => {
+  const data = await fetchNoticeById(noticeId);
+  return data;
+});
+
+export const addFavoriteNoticeThunk = createAsyncThunk('notices/addFavoriteNotice', async (noticeId: string) => {
+  const data = await addFavoriteNotice(noticeId);
+  return data;
+});
+
+export const removeFavoriteNoticeThunk = createAsyncThunk('notices/removeFavoriteNotice', async (noticeId: string) => {
+  const data = await removeFavoriteNotice(noticeId);
+  return data;
+});
+
+export const fetchCitiesThunk = createAsyncThunk('notices/fetchCities', async () => {
+  const data = await fetchCities();
   return data;
 });

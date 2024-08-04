@@ -3,18 +3,25 @@ import {
   fetchCategoriesThunk,
   fetchSexesThunk,
   fetchSpeciesThunk,
-  fetchLocationsThunk,
   fetchNoticesThunk,
-  toggleFavoriteNoticeThunk,
+  fetchNoticeByIdThunk,
+  addFavoriteNoticeThunk,
+  removeFavoriteNoticeThunk,
+  fetchCitiesThunk,
 } from './notices-thunk';
 import { NoticesState, Notice, Category, Sex, Species, Location } from './notices-types';
 
 const initialState: NoticesState = {
-  notices: [],
+  notices: {
+    page: 1,
+    perPage: 6,
+    totalPages: 0,
+    results: [],
+  },
   categories: [],
   sexes: [],
   species: [],
-  locations: [],
+  cities: [],
   isLoading: false,
   error: null,
 };
@@ -35,9 +42,9 @@ const noticesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite: (state, action: PayloadAction<string>) => {
-      const index = state.notices.findIndex((notice) => notice.id === action.payload);
+      const index = state.notices.results.findIndex((notice) => notice._id === action.payload);
       if (index !== -1) {
-        state.notices[index].isFavorite = !state.notices[index].isFavorite;
+        state.notices.results[index].isFavorite = !state.notices.results[index].isFavorite;
       }
     },
   },
@@ -55,29 +62,50 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.species = action.payload;
       })
-      .addCase(fetchLocationsThunk.fulfilled, (state, action: PayloadAction<Location[]>) => {
+      .addCase(
+        fetchNoticesThunk.fulfilled,
+        (state, action: PayloadAction<{ page: number; perPage: number; totalPages: number; results: Notice[] }>) => {
+          state.isLoading = false;
+          state.notices = action.payload;
+        }
+      )
+      .addCase(fetchNoticeByIdThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
         state.isLoading = false;
-        state.locations = action.payload;
-      })
-      .addCase(fetchNoticesThunk.fulfilled, (state, action: PayloadAction<Notice[]>) => {
-        state.isLoading = false;
-        state.notices = action.payload;
-      })
-      .addCase(toggleFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
-        const index = state.notices.findIndex((notice) => notice.id === action.payload.id);
+        const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
         if (index !== -1) {
-          state.notices[index] = action.payload;
+          state.notices.results[index] = action.payload;
+        } else {
+          state.notices.results.push(action.payload);
+        }
+      })
+      .addCase(addFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
+        const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
+        if (index !== -1) {
+          state.notices.results[index] = action.payload;
         }
         state.isLoading = false;
+      })
+      .addCase(removeFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
+        const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
+        if (index !== -1) {
+          state.notices.results[index] = action.payload;
+        }
+        state.isLoading = false;
+      })
+      .addCase(fetchCitiesThunk.fulfilled, (state, action: PayloadAction<Location[]>) => {
+        state.isLoading = false;
+        state.cities = action.payload;
       })
       .addMatcher(
         isPending(
           fetchCategoriesThunk,
           fetchSexesThunk,
           fetchSpeciesThunk,
-          fetchLocationsThunk,
           fetchNoticesThunk,
-          toggleFavoriteNoticeThunk
+          fetchNoticeByIdThunk,
+          addFavoriteNoticeThunk,
+          removeFavoriteNoticeThunk,
+          fetchCitiesThunk
         ),
         handlePending
       )
@@ -86,9 +114,11 @@ const noticesSlice = createSlice({
           fetchCategoriesThunk,
           fetchSexesThunk,
           fetchSpeciesThunk,
-          fetchLocationsThunk,
           fetchNoticesThunk,
-          toggleFavoriteNoticeThunk
+          fetchNoticeByIdThunk,
+          addFavoriteNoticeThunk,
+          removeFavoriteNoticeThunk,
+          fetchCitiesThunk
         ),
         handleRejected
       );

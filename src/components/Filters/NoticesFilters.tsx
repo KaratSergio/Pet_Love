@@ -5,7 +5,7 @@ import {
   fetchCategoriesThunk,
   fetchSexesThunk,
   fetchSpeciesThunk,
-  fetchLocationsThunk,
+  fetchCitiesThunk,
 } from '@redux/notices/notices-thunk';
 import { selectCategories, selectSexes, selectSpecies, selectLocations } from '@redux/notices/notices-selectors';
 
@@ -33,7 +33,7 @@ const NoticesFilters: React.FC = () => {
     dispatch(fetchCategoriesThunk());
     dispatch(fetchSexesThunk());
     dispatch(fetchSpeciesThunk());
-    dispatch(fetchLocationsThunk());
+    dispatch(fetchCitiesThunk());
   }, [dispatch]);
 
   return (

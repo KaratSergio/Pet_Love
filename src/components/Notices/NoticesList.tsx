@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
-import { fetchNoticesThunk, toggleFavoriteNoticeThunk } from '@redux/notices/notices-thunk';
+import { fetchNoticesThunk, addFavoriteNoticeThunk, removeFavoriteNoticeThunk } from '@redux/notices/notices-thunk';
 import { selectNotices, selectIsLoading, selectError } from '@redux/notices/notices-selectors';
 
 import NoticesItem from './NoticesItem';
@@ -15,18 +15,29 @@ const NoticesList: React.FC = () => {
     dispatch(fetchNoticesThunk());
   }, [dispatch]);
 
-  const handleToggleFavorite = (noticeId: string) => {
-    dispatch(toggleFavoriteNoticeThunk(noticeId));
+  const handleToggleFavorite = (noticeId: string, isFavorite: boolean) => {
+    if (isFavorite) {
+      dispatch(removeFavoriteNoticeThunk(noticeId));
+    } else {
+      dispatch(addFavoriteNoticeThunk(noticeId));
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const results = notices?.results || [];
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {notices.map((notice) => (
-        <NoticesItem key={notice.id} notice={notice} onToggleFavorite={() => handleToggleFavorite(notice.id)} />
-      ))}
+      {Array.isArray(results) &&
+        results.map((notice) => (
+          <NoticesItem
+            key={notice._id}
+            notice={notice}
+            onToggleFavorite={() => handleToggleFavorite(notice._id, notice.isFavorite)}
+          />
+        ))}
     </div>
   );
 };

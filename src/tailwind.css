@@ -84,3 +84,8 @@ button {
   font-style: normal;
   font-display: swap;
 }
+
+.btn {
+  border: 1px solid rgba(38, 38, 38, 0.2);
+  border-radius: 100px;
+}

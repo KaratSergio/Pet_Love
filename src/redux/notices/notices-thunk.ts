@@ -25,10 +25,13 @@ export const fetchSpeciesThunk = createAsyncThunk('notices/fetchSpecies', async 
   return data;
 });
 
-export const fetchNoticesThunk = createAsyncThunk('notices/fetchNotices', async () => {
-  const data = await fetchNotices();
-  return data;
-});
+export const fetchNoticesThunk = createAsyncThunk(
+  'notices/fetchNotices',
+  async ({ page, perPage }: { page: number; perPage: number }) => {
+    const data = await fetchNotices(page, perPage);
+    return data;
+  }
+);
 
 export const fetchNoticeByIdThunk = createAsyncThunk('notices/fetchNoticeById', async (noticeId: string) => {
   const data = await fetchNoticeById(noticeId);

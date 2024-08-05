@@ -28,6 +28,7 @@ const config: Config = {
 
         alfaWhite: 'rgba(255, 255, 255, 0.1)',
         alfaBlack: 'rgba(38, 38, 38, 0.05)',
+        alfaGrey: 'rgba(38, 38, 38, 0.2)',
         navBorder: 'rgba(38, 38, 38, 0.15)',
 
         check: '#08aa83',

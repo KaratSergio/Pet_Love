@@ -5,15 +5,20 @@ import { selectNotices, selectIsLoading, selectError } from '@redux/notices/noti
 
 import NoticesItem from './NoticesItem';
 
-const NoticesList: React.FC = () => {
+interface NoticesListProps {
+  currentPage: number;
+  perPage: number;
+}
+
+const NoticesList: React.FC<NoticesListProps> = ({ currentPage, perPage }) => {
   const dispatch = useAppDispatch();
   const notices = useAppSelector(selectNotices);
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchNoticesThunk());
-  }, [dispatch]);
+    dispatch(fetchNoticesThunk({ page: currentPage, perPage }));
+  }, [dispatch, currentPage, perPage]);
 
   const handleToggleFavorite = (noticeId: string, isFavorite: boolean) => {
     if (isFavorite) {

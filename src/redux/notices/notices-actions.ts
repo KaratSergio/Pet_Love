@@ -3,13 +3,18 @@ import { Notice, Category, Sex, Species, Location } from './notices-types';
 
 const API_URL = import.meta.env.VITE_URL_DATABASE;
 
-export const fetchNotices = async (): Promise<{
+export const fetchNotices = async (
+  page: number,
+  perPage: number
+): Promise<{
   page: number;
   perPage: number;
   totalPages: number;
   results: Notice[];
 }> => {
-  const response = await axios.get(`${API_URL}/notices`);
+  const response = await axios.get(`${API_URL}/notices`, {
+    params: { page, perPage },
+  });
 
   return {
     page: response.data.page,

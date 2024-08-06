@@ -3,10 +3,10 @@ export interface Notice {
   imgURL: string;
   title: string;
   popularity: number;
-  petName: string;
-  birthDate: string;
+  name: string;
+  birthday: string;
   sex: string;
-  type: string;
+  species: string;
   category: string;
   comment: string;
   isFavorite: boolean;

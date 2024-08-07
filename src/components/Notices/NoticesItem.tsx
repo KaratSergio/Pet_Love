@@ -6,12 +6,15 @@ interface NoticesItemProps {
   onToggleFavorite: () => void;
 }
 
-const formatDate = (date: string) => {
+const formatDate = (date: string | null): string => {
+  if (!date) {
+    return 'Invalide date';
+  }
   return date.split('-').join('.');
 };
 
-const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+const capitalizeFirstLetter = (str: string): string => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite }) => {

@@ -1,11 +1,5 @@
-import React from 'react';
-
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  className?: string;
-  onPageChange: (page: number) => void;
-}
+import Icon from '../Icon/Icon';
+import { PaginationProps } from './types';
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange, className }) => {
   const pages = [];
@@ -34,13 +28,16 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     }
   }
 
+  const arrowColor = (disabled: boolean) => (disabled ? 'fill-lightBlack' : 'fill-black');
+
   return (
     <div className={`flex space-x-2 ${className}`}>
-      <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="btn px-[6px]">
-        &lt;&lt;
+      <button onClick={() => onPageChange(1)} disabled={currentPage === 1} className="btn px-[9px]">
+        <Icon id="icon-chevron-left" color={arrowColor(currentPage === 1)} width="w-[7px]" height="h-[14px]" />
+        <Icon id="icon-chevron-left" color={arrowColor(currentPage === 1)} width="w-[7px]" height="h-[14px]" />
       </button>
-      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="btn px-[10px]">
-        &lt;
+      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="btn px-[13px]">
+        <Icon id="icon-chevron-left" color={arrowColor(currentPage === 1)} width="w-[7px]" height="h-[14px]" />
       </button>
       {pages.map((page, index) =>
         typeof page === 'number' ? (
@@ -49,12 +46,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             onClick={() => onPageChange(page)}
             className={`rounded-full ${
               currentPage === page ? 'bg-yellow border-yellow' : 'bg-transparent border-alfaBlack'
-            } border rounded px-3 py-1`}
+            } border rounded px-[13px] py-1`}
           >
             {page}
           </button>
         ) : (
-          <span key={index} className="btn px-2">
+          <span key={index} className="btn px-[10px]">
             {page}
           </span>
         )
@@ -62,12 +59,28 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="btn px-[10px]"
+        className="btn px-[13px]"
       >
-        &gt;
+        <Icon
+          id="icon-chevron-right"
+          color={arrowColor(currentPage === totalPages)}
+          width="w-[7px]"
+          height="h-[14px]"
+        />
       </button>
-      <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="btn px-[6px]">
-        &gt;&gt;
+      <button onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} className="btn px-[9px]">
+        <Icon
+          id="icon-chevron-right"
+          color={arrowColor(currentPage === totalPages)}
+          width="w-[7px]"
+          height="h-[14px]"
+        />
+        <Icon
+          id="icon-chevron-right"
+          color={arrowColor(currentPage === totalPages)}
+          width="w-[7px]"
+          height="h-[14px]"
+        />
       </button>
     </div>
   );

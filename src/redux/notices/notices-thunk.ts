@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import {
   fetchCategories,
   fetchSexes,
@@ -38,15 +39,35 @@ export const fetchNoticeByIdThunk = createAsyncThunk('notices/fetchNoticeById', 
   return data;
 });
 
-export const addFavoriteNoticeThunk = createAsyncThunk('notices/addFavoriteNotice', async (noticeId: string) => {
-  const data = await addFavoriteNotice(noticeId);
-  return data;
-});
+export const addFavoriteNoticeThunk = createAsyncThunk(
+  'notices/addFavoriteNotice',
+  async (noticeId: string, { rejectWithValue }) => {
+    try {
+      const data = await addFavoriteNotice(noticeId);
+      return data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
 
-export const removeFavoriteNoticeThunk = createAsyncThunk('notices/removeFavoriteNotice', async (noticeId: string) => {
-  const data = await removeFavoriteNotice(noticeId);
-  return data;
-});
+      if (axiosError.response?.status === 409) {
+        return rejectWithValue('Notice already added to favorites.');
+      }
+
+      return rejectWithValue('Failed to add notice to favorites.');
+    }
+  }
+);
+
+export const removeFavoriteNoticeThunk = createAsyncThunk(
+  'notices/removeFavoriteNotice',
+  async (noticeId: string, { rejectWithValue }) => {
+    try {
+      const data = await removeFavoriteNotice(noticeId);
+      return data;
+    } catch (error) {
+      return rejectWithValue('Failed to remove notice from favorites.');
+    }
+  }
+);
 
 export const fetchCitiesThunk = createAsyncThunk('notices/fetchCities', async () => {
   const data = await fetchCities();

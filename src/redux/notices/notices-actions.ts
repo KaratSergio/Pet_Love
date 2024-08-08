@@ -1,7 +1,5 @@
-import axios from 'axios';
+import { apiClient } from '../apiClient';
 import { Notice, Category, Sex, Species, Location } from './notices-types';
-
-const API_URL = import.meta.env.VITE_URL_DATABASE;
 
 export const fetchNotices = async (
   page: number,
@@ -12,49 +10,44 @@ export const fetchNotices = async (
   totalPages: number;
   results: Notice[];
 }> => {
-  const response = await axios.get(`${API_URL}/notices`, {
+  const response = await apiClient.get('/notices', {
     params: { page, perPage },
   });
 
-  return {
-    page: response.data.page,
-    perPage: response.data.perPage,
-    totalPages: response.data.totalPages,
-    results: response.data.results,
-  };
+  return response.data;
 };
 
 export const fetchCategories = async (): Promise<Category[]> => {
-  const response = await axios.get(`${API_URL}/notices/categories`);
+  const response = await apiClient.get('/notices/categories');
   return response.data;
 };
 
 export const fetchSexes = async (): Promise<Sex[]> => {
-  const response = await axios.get(`${API_URL}/notices/sex`);
+  const response = await apiClient.get('/notices/sex');
   return response.data;
 };
 
 export const fetchSpecies = async (): Promise<Species[]> => {
-  const response = await axios.get(`${API_URL}/notices/species`);
+  const response = await apiClient.get('/notices/species');
   return response.data;
 };
 
 export const fetchNoticeById = async (noticeId: string): Promise<Notice> => {
-  const response = await axios.get(`${API_URL}/notices/${noticeId}`);
+  const response = await apiClient.get(`/notices/${noticeId}`);
   return response.data;
 };
 
 export const addFavoriteNotice = async (noticeId: string): Promise<Notice> => {
-  const response = await axios.post(`${API_URL}/notices/favorites/add/${noticeId}`);
+  const response = await apiClient.post(`/notices/favorites/add/${noticeId}`);
   return response.data;
 };
 
 export const removeFavoriteNotice = async (noticeId: string): Promise<Notice> => {
-  const response = await axios.delete(`${API_URL}/notices/favorites/remove/${noticeId}`);
+  const response = await apiClient.delete(`/notices/favorites/remove/${noticeId}`);
   return response.data;
 };
 
 export const fetchCities = async (): Promise<Location[]> => {
-  const response = await axios.get(`${API_URL}/cities`);
+  const response = await apiClient.get('/cities');
   return response.data;
 };

@@ -6,14 +6,17 @@ interface NoticesItemProps {
   onToggleFavorite: () => void;
 }
 
-const formatDate = (date: string | null): string => {
+const formatDate = (date: string | null | undefined): string => {
   if (!date) {
-    return 'Invalide date';
+    return '';
   }
   return date.split('-').join('.');
 };
 
-const capitalizeFirstLetter = (str: string): string => {
+const capitalizeFirstLetter = (str: string | undefined | null): string => {
+  if (!str) {
+    return '';
+  }
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 

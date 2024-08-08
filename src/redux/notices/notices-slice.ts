@@ -82,6 +82,8 @@ const noticesSlice = createSlice({
         const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
         if (index !== -1) {
           state.notices.results[index] = action.payload;
+        } else {
+          state.notices.results.push(action.payload);
         }
         state.isLoading = false;
       })

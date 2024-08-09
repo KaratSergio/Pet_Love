@@ -24,6 +24,7 @@ const initialState: NoticesState = {
   cities: [],
   isLoading: false,
   error: null,
+  favoriteIds: [],
 };
 
 const handlePending = (state: NoticesState) => {
@@ -45,6 +46,12 @@ const noticesSlice = createSlice({
       const index = state.notices.results.findIndex((notice) => notice._id === action.payload);
       if (index !== -1) {
         state.notices.results[index].isFavorite = !state.notices.results[index].isFavorite;
+
+        if (state.notices.results[index].isFavorite) {
+          state.favoriteIds.push(action.payload);
+        } else {
+          state.favoriteIds = state.favoriteIds.filter((id) => id !== action.payload);
+        }
       }
     },
   },
@@ -78,20 +85,18 @@ const noticesSlice = createSlice({
           state.notices.results.push(action.payload);
         }
       })
-      .addCase(addFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
-        const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
-        if (index !== -1) {
-          state.notices.results[index] = action.payload;
-        } else {
-          state.notices.results.push(action.payload);
-        }
+      .addCase(addFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<string[]>) => {
+        state.favoriteIds = action.payload;
+        state.notices.results.forEach((notice) => {
+          notice.isFavorite = action.payload.includes(notice._id);
+        });
         state.isLoading = false;
       })
-      .addCase(removeFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
-        const index = state.notices.results.findIndex((notice) => notice._id === action.payload._id);
-        if (index !== -1) {
-          state.notices.results[index] = action.payload;
-        }
+      .addCase(removeFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<string[]>) => {
+        state.favoriteIds = action.payload;
+        state.notices.results.forEach((notice) => {
+          notice.isFavorite = action.payload.includes(notice._id);
+        });
         state.isLoading = false;
       })
       .addCase(fetchCitiesThunk.fulfilled, (state, action: PayloadAction<Location[]>) => {

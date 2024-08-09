@@ -45,4 +45,5 @@ export interface NoticesState {
   cities: Location[];
   isLoading: boolean;
   error: string | null;
+  favoriteIds: string[];
 }

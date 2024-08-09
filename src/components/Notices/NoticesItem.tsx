@@ -1,9 +1,10 @@
-import { Notice } from '@redux/notices/notices-types';
 import Icon from '../Icon/Icon';
+import { Notice } from '@redux/notices/notices-types';
 
 interface NoticesItemProps {
   notice: Notice;
   onToggleFavorite: () => void;
+  size?: 'large' | 'small';
 }
 
 const formatDate = (date: string | null | undefined): string => {
@@ -20,15 +21,20 @@ const capitalizeFirstLetter = (str: string | undefined | null): string => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite }) => {
+const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, size = 'large' }) => {
+  // add size `large` & `small`
+  const containerClasses = size === 'small' ? 'w-[320px] h-[388px]' : 'w-[363px]';
+  const imageClasses = size === 'small' ? 'w-[292px] h-[162px]' : 'w-[315px] h-[178px]';
+  const fontSize = size === 'small' ? 'text-[12px]' : 'text-[18px]';
+
   return (
-    <div className="w-[363px] bg-white p-6 flex flex-col justify-between">
+    <div className={`bg-white p-6 flex flex-col justify-between ${containerClasses}`}>
       <div>
-        <div className="w-[315px] h-[178px] relative overflow-hidden rounded-2xl">
+        <div className={`relative overflow-hidden rounded-2xl ${imageClasses}`}>
           <img src={notice.imgURL} alt={notice.title} className="h-full w-full object-cover" />
         </div>
         <div className="flex justify-between items-center mt-6">
-          <h2 className="text-[18px] font-bold">{notice.title}</h2>
+          <h2 className={`font-bold ${fontSize}`}>{notice.title}</h2>
           <div className="flex items-center">
             <Icon id="icon-star" strokeColor="stroke-yellow" color="fill-yellow" className="mr-[2px]" />{' '}
             {notice.popularity}

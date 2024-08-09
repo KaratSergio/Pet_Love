@@ -37,12 +37,12 @@ export const fetchNoticeById = async (noticeId: string): Promise<Notice> => {
   return response.data;
 };
 
-export const addFavoriteNotice = async (noticeId: string): Promise<Notice> => {
+export const addFavoriteNotice = async (noticeId: string): Promise<string[]> => {
   const response = await apiClient.post(`/notices/favorites/add/${noticeId}`);
   return response.data;
 };
 
-export const removeFavoriteNotice = async (noticeId: string): Promise<Notice> => {
+export const removeFavoriteNotice = async (noticeId: string): Promise<string[]> => {
   const response = await apiClient.delete(`/notices/favorites/remove/${noticeId}`);
   return response.data;
 };

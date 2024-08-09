@@ -10,7 +10,10 @@ export const selectIsLoading = (state: RootState) => state.notices.isLoading;
 export const selectError = (state: RootState) => state.notices.error;
 export const selectTotalPages = (state: RootState) => state.notices.notices.totalPages;
 
+export const selectAllNotices = (state: RootState) => state.notices.notices.results;
 export const selectFavoriteNotices = createSelector(
-  selectNotices,
-  (notices) => notices.results?.filter((notice) => notice.isFavorite) || []
+  [selectAllNotices, (state: RootState) => state.notices.favoriteIds || []],
+  (notices, favoriteIds) => {
+    return notices.filter((notice) => favoriteIds.includes(notice._id));
+  }
 );

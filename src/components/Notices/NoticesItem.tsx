@@ -3,7 +3,7 @@ import { Notice } from '@redux/notices/notices-types';
 
 interface NoticesItemProps {
   notice: Notice;
-  onToggleFavorite: () => void;
+  onToggleFavorite?: () => void;
   size?: 'large' | 'small';
 }
 
@@ -22,19 +22,21 @@ const capitalizeFirstLetter = (str: string | undefined | null): string => {
 };
 
 const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, size = 'large' }) => {
-  // add size `large` & `small`
-  const containerClasses = size === 'small' ? 'w-[320px] h-[388px]' : 'w-[363px]';
-  const imageClasses = size === 'small' ? 'w-[292px] h-[162px]' : 'w-[315px] h-[178px]';
-  const fontSize = size === 'small' ? 'text-[12px]' : 'text-[18px]';
+  const containerClasses = size === 'small' ? 'w-[320px] h-[388px] p-[14px]' : 'w-[363px]';
+  const imageClasses = size === 'small' ? 'w-[292px] h-[162px] mb-[14px]' : 'w-[315px] h-[178px] mb-6';
+  const btnContainerClasses = size === 'small' ? 'mt-6' : 'mt-[50px]';
+  const detailBtnClasses = size === 'small' ? 'max-w-full h-[44px]' : '';
+  const favoriteBtnClasses = size === 'small' ? 'hidden' : '';
+  const commentClasses = size === 'small' ? 'mt-[14px] leading-tight' : 'mt-4';
 
   return (
-    <div className={`bg-white p-6 flex flex-col justify-between ${containerClasses}`}>
+    <div className={`bg-white p-6 flex flex-col justify-between rounded-2xl ${containerClasses}`}>
       <div>
         <div className={`relative overflow-hidden rounded-2xl ${imageClasses}`}>
           <img src={notice.imgURL} alt={notice.title} className="h-full w-full object-cover" />
         </div>
-        <div className="flex justify-between items-center mt-6">
-          <h2 className={`font-bold ${fontSize}`}>{notice.title}</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="font-bold">{notice.title}</h2>
           <div className="flex items-center">
             <Icon id="icon-star" strokeColor="stroke-yellow" color="fill-yellow" className="mr-[2px]" />{' '}
             {notice.popularity}
@@ -51,7 +53,7 @@ const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, siz
           </li>
           <li className="flex flex-col">
             <span className="font-medium text-[10px] text-lightBlack">Sex</span>
-            <span className="text-sm">{capitalizeFirstLetter(notice.sex)}</span>
+            <span className="text-[12px]">{capitalizeFirstLetter(notice.sex)}</span>
           </li>
           <li className="flex flex-col">
             <span className="font-medium text-[10px] text-lightBlack">Species</span>
@@ -62,13 +64,17 @@ const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, siz
             <span className="text-[12px]">{capitalizeFirstLetter(notice.category)}</span>
           </li>
         </ul>
-        <p className="mt-4 text-sm text-dark">{notice.comment}</p>
+        <p className={`text-sm text-dark ${commentClasses}`}>{notice.comment}</p>
       </div>
-      <div className="flex justify-between gap-[10px] mt-[50px]">
-        <button type="button" className="text-white max-w-64 bg-yellow rounded-30 w-full">
+      <div className={`flex justify-between gap-[10px] ${btnContainerClasses}`}>
+        <button type="button" className={`text-white max-w-64 bg-yellow rounded-30 w-full ${detailBtnClasses}`}>
           Learn more
         </button>
-        <button type="button" onClick={onToggleFavorite} className="rounded-full bg-lightYellow size-12">
+        <button
+          type="button"
+          onClick={onToggleFavorite}
+          className={`rounded-full bg-lightYellow size-12 ${favoriteBtnClasses}`}
+        >
           <Icon id="icon-like" strokeColor="stroke-yellow" />
         </button>
       </div>

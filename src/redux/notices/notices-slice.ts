@@ -41,20 +41,7 @@ const handleRejected = (state: NoticesState, action: any) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
-  reducers: {
-    toggleFavorite: (state, action: PayloadAction<string>) => {
-      const index = state.notices.results.findIndex((notice) => notice._id === action.payload);
-      if (index !== -1) {
-        state.notices.results[index].isFavorite = !state.notices.results[index].isFavorite;
-
-        if (state.notices.results[index].isFavorite) {
-          state.favoriteIds.push(action.payload);
-        } else {
-          state.favoriteIds = state.favoriteIds.filter((id) => id !== action.payload);
-        }
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategoriesThunk.fulfilled, (state, action: PayloadAction<Category[]>) => {
@@ -132,5 +119,4 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { toggleFavorite } = noticesSlice.actions;
 export default noticesSlice.reducer;

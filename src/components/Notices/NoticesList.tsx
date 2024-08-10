@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 import { fetchNoticesThunk, addFavoriteNoticeThunk, removeFavoriteNoticeThunk } from '@redux/notices/notices-thunk';
 import { selectNotices, selectIsLoading, selectError } from '@redux/notices/notices-selectors';
-
 import NoticesItem from './NoticesItem';
+import { Notice } from '../../redux/notices/notices-types';
 
 interface NoticesListProps {
   currentPage: number;
@@ -20,8 +20,10 @@ const NoticesList: React.FC<NoticesListProps> = ({ currentPage, perPage }) => {
     dispatch(fetchNoticesThunk({ page: currentPage, perPage }));
   }, [dispatch, currentPage, perPage]);
 
-  const handleToggleFavorite = (noticeId: string, isFavorite: boolean) => {
-    if (isFavorite) {
+  const handleToggleFavorite = (noticeId: string) => {
+    const notice = notices.results.find((notice: Notice) => notice._id === noticeId);
+
+    if (notice?.isFavorite) {
       dispatch(removeFavoriteNoticeThunk(noticeId));
     } else {
       dispatch(addFavoriteNoticeThunk(noticeId));
@@ -37,11 +39,7 @@ const NoticesList: React.FC<NoticesListProps> = ({ currentPage, perPage }) => {
     <div className="flex flex-wrap gap-4 justify-center">
       {Array.isArray(results) &&
         results.map((notice) => (
-          <NoticesItem
-            key={notice._id}
-            notice={notice}
-            onToggleFavorite={() => handleToggleFavorite(notice._id, notice.isFavorite)}
-          />
+          <NoticesItem key={notice._id} notice={notice} onToggleFavorite={() => handleToggleFavorite(notice._id)} />
         ))}
     </div>
   );

@@ -24,13 +24,23 @@ export const signOutUser = createAsyncThunk('users/signOut', async () => {
 });
 
 export const fetchCurrentUser = createAsyncThunk('users/fetchCurrentUser', async () => {
-  const data = await getCurrentUser();
-  return data;
+  try {
+    const data = await getCurrentUser();
+    return data;
+  } catch (error) {
+    console.error('Error fetching current user data:', error);
+    throw error;
+  }
 });
 
 export const fetchCurrentUserFull = createAsyncThunk('users/fetchCurrentUserFull', async () => {
-  const data = await getCurrentUserFull();
-  return data;
+  try {
+    const data = await getCurrentUserFull();
+    return data;
+  } catch (error) {
+    console.error('Error fetching full user data:', error);
+    throw error;
+  }
 });
 
 export const updateCurrentUser = createAsyncThunk(

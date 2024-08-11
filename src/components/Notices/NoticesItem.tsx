@@ -25,8 +25,7 @@ const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, siz
   const containerClasses = size === 'small' ? 'w-[320px] h-[388px] p-[14px]' : 'w-[363px]';
   const imageClasses = size === 'small' ? 'w-[292px] h-[162px] mb-[14px]' : 'w-[315px] h-[178px] mb-6';
   const btnContainerClasses = size === 'small' ? 'mt-6' : 'mt-[50px]';
-  const detailBtnClasses = size === 'small' ? 'max-w-full h-[44px]' : '';
-  const favoriteBtnClasses = size === 'small' ? 'hidden' : '';
+  const detailBtnClasses = size === 'small' ? 'h-[44px] max-w-[230px]' : 'h-[48px]';
   const commentClasses = size === 'small' ? 'mt-[14px] leading-tight' : 'mt-4';
 
   return (
@@ -70,11 +69,7 @@ const NoticesItem: React.FC<NoticesItemProps> = ({ notice, onToggleFavorite, siz
         <button type="button" className={`text-white max-w-64 bg-yellow rounded-30 w-full ${detailBtnClasses}`}>
           Learn more
         </button>
-        <button
-          type="button"
-          onClick={onToggleFavorite}
-          className={`rounded-full bg-lightYellow size-12 ${favoriteBtnClasses}`}
-        >
+        <button type="button" onClick={onToggleFavorite} className="rounded-full bg-lightYellow size-12">
           <Icon id="icon-like" strokeColor="stroke-yellow" />
         </button>
       </div>

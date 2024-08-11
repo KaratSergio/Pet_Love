@@ -28,7 +28,6 @@ export const getCurrentUserFull = async () => {
   const response = await apiClient.get('/users/current/full');
   return response.data;
 };
-
 export const editCurrentUser = async (data: { name: string; email: string; phone: string; avatar?: string }) => {
   const response = await apiClient.patch('/users/current/edit', data);
   return response.data;

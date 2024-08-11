@@ -32,11 +32,11 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(signInUser.fulfilled, (state, action: PayloadAction<{ email: string; name: string; token: string }>) => {
+      .addCase(signInUser.fulfilled, (state, action: PayloadAction<UserState['user']>) => {
         state.isLoading = false;
         state.user = action.payload;
       })
-      .addCase(signUpUser.fulfilled, (state, action: PayloadAction<{ email: string; name: string; token: string }>) => {
+      .addCase(signUpUser.fulfilled, (state, action: PayloadAction<UserState['user']>) => {
         state.isLoading = false;
         state.user = action.payload;
       })
@@ -45,11 +45,11 @@ const usersSlice = createSlice({
         state.user = null;
         localStorage.removeItem('token');
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(fetchCurrentUser.fulfilled, (state, action: PayloadAction<UserState['user']>) => {
         state.isLoading = false;
         state.user = action.payload;
       })
-      .addCase(fetchCurrentUserFull.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(fetchCurrentUserFull.fulfilled, (state, action: PayloadAction<UserState['user']>) => {
         state.isLoading = false;
         state.user = action.payload;
       })

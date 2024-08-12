@@ -61,6 +61,10 @@ const noticesSlice = createSlice({
         (state, action: PayloadAction<{ page: number; perPage: number; totalPages: number; results: Notice[] }>) => {
           state.isLoading = false;
           state.notices = action.payload;
+
+          state.notices.results.forEach((notice) => {
+            notice.isFavorite = state.favoriteIds.includes(notice._id);
+          });
         }
       )
       .addCase(fetchNoticeByIdThunk.fulfilled, (state, action: PayloadAction<Notice>) => {
@@ -71,18 +75,24 @@ const noticesSlice = createSlice({
         } else {
           state.notices.results.push(action.payload);
         }
+
+        state.notices.results.forEach((notice) => {
+          notice.isFavorite = state.favoriteIds.includes(notice._id);
+        });
       })
       .addCase(addFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<string[]>) => {
         state.favoriteIds = action.payload;
+
         state.notices.results.forEach((notice) => {
-          notice.isFavorite = action.payload.includes(notice._id);
+          notice.isFavorite = state.favoriteIds.includes(notice._id);
         });
         state.isLoading = false;
       })
       .addCase(removeFavoriteNoticeThunk.fulfilled, (state, action: PayloadAction<string[]>) => {
         state.favoriteIds = action.payload;
+
         state.notices.results.forEach((notice) => {
-          notice.isFavorite = action.payload.includes(notice._id);
+          notice.isFavorite = state.favoriteIds.includes(notice._id);
         });
         state.isLoading = false;
       })

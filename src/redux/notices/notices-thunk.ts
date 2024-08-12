@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
+import { RootState } from '../store';
 import {
   fetchCategories,
   fetchSexes,
@@ -41,17 +41,18 @@ export const fetchNoticeByIdThunk = createAsyncThunk('notices/fetchNoticeById', 
 
 export const addFavoriteNoticeThunk = createAsyncThunk(
   'notices/addFavoriteNotice',
-  async (noticeId: string, { rejectWithValue }) => {
+  async (noticeId: string, { getState, rejectWithValue }) => {
+    const state = getState() as RootState;
+    const favoriteIds = state.notices.favoriteIds || [];
+
+    if (favoriteIds.includes(noticeId)) {
+      return rejectWithValue('Notice already added to favorites.');
+    }
+
     try {
       const data = await addFavoriteNotice(noticeId);
       return data;
     } catch (error) {
-      const axiosError = error as AxiosError;
-
-      if (axiosError.response?.status === 409) {
-        return rejectWithValue('Notice already added to favorites.');
-      }
-
       return rejectWithValue('Failed to add notice to favorites.');
     }
   }
@@ -59,7 +60,14 @@ export const addFavoriteNoticeThunk = createAsyncThunk(
 
 export const removeFavoriteNoticeThunk = createAsyncThunk(
   'notices/removeFavoriteNotice',
-  async (noticeId: string, { rejectWithValue }) => {
+  async (noticeId: string, { getState, rejectWithValue }) => {
+    const state = getState() as RootState;
+    const favoriteIds = state.notices.favoriteIds || [];
+
+    if (!favoriteIds.includes(noticeId)) {
+      return rejectWithValue('Notice is not in favorites.');
+    }
+
     try {
       const data = await removeFavoriteNotice(noticeId);
       return data;

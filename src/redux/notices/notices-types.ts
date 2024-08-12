@@ -9,7 +9,7 @@ export interface Notice {
   species: string;
   category: string;
   comment: string;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 }
 
 export interface Category {

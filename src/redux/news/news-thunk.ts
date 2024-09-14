@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getNews } from './news-actions';
-import { News } from './news-type';
+import { NewsApiResponse } from './news-type';
 
-export const fetchNews = createAsyncThunk<News[]>('news/fetchNews', async () => {
-  const news = await getNews();
-  return news;
+export const fetchNews = createAsyncThunk<NewsApiResponse>('news/fetchNews', async () => {
+  const response = await getNews();
+  return response;
 });

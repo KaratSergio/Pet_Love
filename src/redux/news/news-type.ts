@@ -8,8 +8,15 @@ export interface News {
   id: string;
 }
 
+export interface NewsApiResponse {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  results: News[];
+}
+
 export interface NewsState {
-    news: News[];
-    isLoading: boolean;
-    error: string | null;
+  news: NewsApiResponse | null;
+  isLoading: boolean;
+  error: string | null;
 }

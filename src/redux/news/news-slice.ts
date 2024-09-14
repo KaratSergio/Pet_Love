@@ -3,7 +3,7 @@ import { fetchNews } from './news-thunk';
 import { NewsState } from './news-type';
 
 const initialState: NewsState = {
-  news: [],
+  news: null,
   isLoading: false,
   error: null,
 };
@@ -16,7 +16,6 @@ const newsSlice = createSlice({
     builder
       .addCase(fetchNews.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(fetchNews.fulfilled, (state, action) => {
         state.isLoading = false;

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { News } from './news-type';
+import { NewsApiResponse } from './news-type';
 
 const API_URL = import.meta.env.VITE_URL_DATABASE;
 
-export const getNews = async (): Promise<News[]> => {
-  const response = await axios.get(`${API_URL}/news`);
+export const getNews = async (): Promise<NewsApiResponse> => {
+  const response = await axios.get<NewsApiResponse>(`${API_URL}/news`);
   return response.data;
 };

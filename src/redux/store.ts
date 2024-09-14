@@ -7,6 +7,7 @@ import usersReducer from './users/users-slice';
 import modalReducer from './modal/modalSlice';
 import friendsReducer from './friends/friends-slice';
 import noticesReducer from './notices/notices-slice';
+import newsReducer from './news/news-slice';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   friends: friendsReducer,
   notices: noticesReducer,
+  news: newsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

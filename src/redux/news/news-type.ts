@@ -20,3 +20,7 @@ export interface NewsState {
   isLoading: boolean;
   error: string | null;
 }
+
+export interface NewsItemProps {
+  item: News;
+}

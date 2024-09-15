@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { fetchNews } from '@redux/news/news-thunk';
 import { selectNews } from '@redux/news/news-selectors';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
+import NewsItem from './NewsItem';
 
 const NewsList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,13 +13,9 @@ const NewsList: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-center gap-x-8 gap-y-16">
       {news.map((item) => (
-        <div key={item._id}>
-          <img src={item.imgUrl} alt={item.title} />
-          <h2>{item.title}</h2>
-          <p>{item.text}</p>
-        </div>
+        <NewsItem key={item._id} item={item} />
       ))}
     </div>
   );

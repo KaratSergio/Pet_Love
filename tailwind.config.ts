@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      lineClamp: {
+        2: '2',
+        4: '4',
+      },
       fontFamily: {
         manrope: ['ManropeMedium', 'sans-serif'],
         manropeSemiBold: ['ManropeSemiBold', 'sans-serif'],

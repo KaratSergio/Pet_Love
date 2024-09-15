@@ -16,6 +16,7 @@
     "@cloudinary/url-gen": "^1.19.0",
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.5",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axios": "^1.7.2",
     "modern-normalize": "^2.0.0",

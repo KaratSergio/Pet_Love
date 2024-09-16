@@ -6,6 +6,7 @@ const initialState: NewsState = {
   news: null,
   isLoading: false,
   error: null,
+  totalPages: 1,
 };
 
 const newsSlice = createSlice({
@@ -20,6 +21,7 @@ const newsSlice = createSlice({
       .addCase(fetchNews.fulfilled, (state, action) => {
         state.isLoading = false;
         state.news = action.payload;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchNews.rejected, (state, action) => {
         state.isLoading = false;

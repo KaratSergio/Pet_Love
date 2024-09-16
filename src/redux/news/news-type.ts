@@ -19,6 +19,7 @@ export interface NewsState {
   news: NewsApiResponse | null;
   isLoading: boolean;
   error: string | null;
+  totalPages: number;
 }
 
 export interface NewsItemProps {

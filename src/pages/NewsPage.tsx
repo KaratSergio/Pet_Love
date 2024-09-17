@@ -19,8 +19,10 @@ const NewsPage: React.FC = () => {
 
   return (
     <section className="m-auto max-w-desktop px-16 py-8 bg-orange-50">
-      <Title />
-      <SearchInput placeholder="Search news..." onSubmit={handleSearch} className="mb-8" />
+      <div className="flex justify-between items-center mb-[60px] mt-[70px]">
+        <Title />
+        <SearchInput placeholder="Search" onSubmit={handleSearch} className="w-[230px] h-12" />
+      </div>
       <NewsList searchQuery={searchQuery} />
     </section>
   );

@@ -1,21 +1,34 @@
 import { useState, useEffect } from 'react';
+import { fetchNews } from '@redux/news/news-thunk';
+import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
+import { selectNewsApiResponse } from '@redux/news/news-selectors';
+
 import Title from '@components/Custom/Title';
 import NewsList from '@components/News/NewsList';
 import SearchInput from '@components/Custom/SearchInput';
-import { useAppDispatch } from '@hooks/redux-hooks';
-import { fetchNews } from '@redux/news/news-thunk';
+import Pagination from '@components/Pagination/Pagination';
 
 const NewsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  const newsResponse = useAppSelector(selectNewsApiResponse);
+  const totalPages = newsResponse?.totalPages || 1;
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   useEffect(() => {
-    dispatch(fetchNews({ page: 1, limit: 6, keyword: searchQuery }));
-  }, [dispatch, searchQuery]);
+    dispatch(fetchNews({ page: currentPage, limit: itemsPerPage, keyword: searchQuery }));
+  }, [dispatch, searchQuery, currentPage, itemsPerPage]);
 
   return (
     <section className="m-auto max-w-desktop px-16 py-8 bg-orange-50">
@@ -23,7 +36,18 @@ const NewsPage: React.FC = () => {
         <Title />
         <SearchInput placeholder="Search" onSubmit={handleSearch} className="w-[230px] h-12" />
       </div>
-      <NewsList searchQuery={searchQuery} />
+
+      <div className="flex flex-col items-center">
+        <NewsList searchQuery={searchQuery} currentPage={currentPage} itemsPerPage={itemsPerPage} />
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="mt-[60px]"
+          />
+        )}
+      </div>
     </section>
   );
 };

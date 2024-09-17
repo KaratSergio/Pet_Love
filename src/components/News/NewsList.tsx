@@ -5,7 +5,11 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 import NewsItem from './NewsItem';
 import Pagination from '../Pagination/Pagination';
 
-const NewsList: React.FC = () => {
+interface NewsListProps {
+  searchQuery: string;
+}
+
+const NewsList: React.FC<NewsListProps> = ({ searchQuery }) => {
   const dispatch = useAppDispatch();
   const news = useAppSelector(selectNews);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,8 +17,8 @@ const NewsList: React.FC = () => {
   const totalPages = 66;
 
   useEffect(() => {
-    dispatch(fetchNews({ page: currentPage, limit: itemsPerPage }));
-  }, [dispatch, currentPage]);
+    dispatch(fetchNews({ page: currentPage, limit: itemsPerPage, keyword: searchQuery }));
+  }, [dispatch, currentPage, searchQuery]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

@@ -65,3 +65,13 @@ export interface PetBlockProps {
   className?: string;
   style?: React.CSSProperties;
 }
+
+export interface SearchInputProps {
+  placeholder?: string;
+  onSubmit: (value: string) => void;
+  className?: string;
+}
+
+export interface SearchInputFormValues {
+  search: string;
+}

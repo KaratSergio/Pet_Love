@@ -13,6 +13,8 @@ export interface NewsApiResponse {
   perPage: number;
   totalPages: number;
   results: News[];
+  limit: number;
+  keyword?: string;
 }
 
 export interface NewsState {

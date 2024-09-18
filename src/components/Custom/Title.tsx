@@ -53,7 +53,7 @@ const Title: React.FC<TitleProps> = ({
 
   return (
     <div className={`title-container ${className}`}>
-      <h2 className={`text-[54px] font-bold ${finalMainTitleClassName}`}>{finalMainTitle}</h2>
+      <h2 className={`text-[28px] font-bold ${finalMainTitleClassName}`}>{finalMainTitle}</h2>
       {finalSubTitle && <p className={`text-lg font-medium ${finalSubTitleClassName}`}>{finalSubTitle}</p>}
     </div>
   );

@@ -17,7 +17,7 @@ const NoticesPage: React.FC = () => {
 
   return (
     <section className="mx-auto w-full max-w-desktop p-8 bg-orange-50">
-      <Title />
+      <Title mainTitleClassName="sm:text-[54px]" />
       <NoticesFilters />
       <NoticesList currentPage={currentPage} perPage={perPage} />
       <div className="flex justify-center mt-[60px]">

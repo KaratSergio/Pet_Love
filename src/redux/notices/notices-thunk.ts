@@ -11,6 +11,8 @@ import {
   fetchCities,
 } from './notices-actions';
 
+import { FetchNoticesParams } from './notices-types';
+
 export const fetchCategoriesThunk = createAsyncThunk('notices/fetchCategories', async () => {
   const data = await fetchCategories();
   return data;
@@ -26,10 +28,18 @@ export const fetchSpeciesThunk = createAsyncThunk('notices/fetchSpecies', async 
   return data;
 });
 
+// export const fetchNoticesThunk = createAsyncThunk(
+//   'notices/fetchNotices',
+//   async ({ page, perPage }: { page: number; perPage: number }) => {
+//     const data = await fetchNotices(page, perPage);
+//     return data;
+//   }
+// );
+
 export const fetchNoticesThunk = createAsyncThunk(
   'notices/fetchNotices',
-  async ({ page, perPage }: { page: number; perPage: number }) => {
-    const data = await fetchNotices(page, perPage);
+  async ({ page, perPage, keyword, category, sex, species, location, filter }: FetchNoticesParams) => {
+    const data = await fetchNotices(page, perPage, keyword, category, sex, species, location, filter);
     return data;
   }
 );

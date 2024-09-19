@@ -47,3 +47,14 @@ export interface NoticesState {
   error: string | null;
   favoriteIds: string[];
 }
+
+export interface FetchNoticesParams {
+  page: number;
+  perPage: number;
+  keyword?: string;
+  category?: string;
+  sex?: string;
+  species?: string;
+  location?: string;
+  filter?: string;
+}

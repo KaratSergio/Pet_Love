@@ -2,8 +2,8 @@ import NoticesItem from './NoticesItem/NoticesItem';
 import useNotices from '@hooks/useNotices';
 import { NoticesListProps } from './types';
 
-const NoticesList: React.FC<NoticesListProps> = ({ currentPage, perPage }) => {
-  const { isLoading, error, notices, handleToggleFavorite } = useNotices(currentPage, perPage);
+const NoticesList: React.FC<NoticesListProps> = ({ currentPage, perPage, searchQuery, filters }) => {
+  const { isLoading, error, notices, handleToggleFavorite } = useNotices(currentPage, perPage, searchQuery, filters);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

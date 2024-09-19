@@ -3,19 +3,47 @@ import { Notice, Category, Sex, Species, Location } from './notices-types';
 
 export const fetchNotices = async (
   page: number,
-  perPage: number
-): Promise<{
-  page: number;
-  perPage: number;
-  totalPages: number;
-  results: Notice[];
-}> => {
-  const response = await apiClient.get('/notices', {
-    params: { page, perPage },
-  });
+  perPage: number,
+  keyword?: string,
+  category?: string,
+  sex?: string,
+  species?: string,
+  location?: string,
+  filter?: string
+) => {
+  const query = new URLSearchParams({
+    page: String(page),
+    perPage: String(perPage),
+    keyword: keyword || '',
+    category: category || '',
+    sex: sex || '',
+    species: species || '',
+    location: location || '',
+    filter: filter || '',
+  }).toString();
 
+  const response = await apiClient.get(`/notices?${query}`);
+  if (!response) {
+    throw new Error('Failed to fetch notices');
+  }
   return response.data;
 };
+
+// export const fetchNotices = async (
+//   page: number,
+//   perPage: number
+// ): Promise<{
+//   page: number;
+//   perPage: number;
+//   totalPages: number;
+//   results: Notice[];
+// }> => {
+//   const response = await apiClient.get('/notices', {
+//     params: { page, perPage },
+//   });
+
+//   return response.data;
+// };
 
 export const fetchCategories = async (): Promise<Category[]> => {
   const response = await apiClient.get('/notices/categories');

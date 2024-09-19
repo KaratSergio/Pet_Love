@@ -11,15 +11,33 @@ interface UseNoticesResult {
   handleToggleFavorite: (noticeId: string) => void;
 }
 
-const useNotices = (currentPage: number, perPage: number): UseNoticesResult => {
+const useNotices = (
+  currentPage: number,
+  perPage: number,
+  searchQuery: string,
+  filters: {
+    category: string;
+    sex: string;
+    species: string;
+    location: string;
+    filter: string;
+  }
+): UseNoticesResult => {
   const dispatch = useAppDispatch();
   const notices = useAppSelector(selectNotices);
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchNoticesThunk({ page: currentPage, perPage }));
-  }, [dispatch, currentPage, perPage]);
+    dispatch(
+      fetchNoticesThunk({
+        page: currentPage,
+        perPage,
+        keyword: searchQuery,
+        ...filters,
+      })
+    );
+  }, [dispatch, currentPage, perPage, searchQuery, filters]);
 
   const handleToggleFavorite = useCallback(
     (noticeId: string) => {

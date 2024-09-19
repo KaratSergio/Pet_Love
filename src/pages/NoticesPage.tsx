@@ -9,6 +9,15 @@ import { selectTotalPages } from '@redux/notices/notices-selectors';
 const NoticesPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(6);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filters, setFilters] = useState({
+    category: '',
+    sex: '',
+    species: '',
+    location: '',
+    filter: '',
+  });
+
   const totalPages = useAppSelector(selectTotalPages);
 
   const handlePageChange = (page: number) => {
@@ -18,8 +27,13 @@ const NoticesPage: React.FC = () => {
   return (
     <section className="mx-auto w-full max-w-desktop p-8 bg-orange-50">
       <Title mainTitleClassName="sm:text-[54px]" />
-      <NoticesFilters />
-      <NoticesList currentPage={currentPage} perPage={perPage} />
+      <NoticesFilters
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <NoticesList currentPage={currentPage} perPage={perPage} searchQuery={searchQuery} filters={filters} />
       <div className="flex justify-center mt-[60px]">
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>

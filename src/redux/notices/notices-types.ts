@@ -12,24 +12,12 @@ export interface Notice {
   isFavorite?: boolean;
 }
 
-export interface Category {
-  value: string;
-  label: string;
-}
-
-export interface Sex {
-  value: string;
-  label: string;
-}
-
-export interface Species {
-  value: string;
-  label: string;
-}
-
 export interface Location {
-  value: string;
-  label: string;
+  _id: string;
+  cityEn: string;
+  countyEn: string;
+  stateEn: string;
+  useCounty: string;
 }
 
 export interface NoticesState {
@@ -39,9 +27,9 @@ export interface NoticesState {
     totalPages: number;
     results: Notice[];
   };
-  categories: Category[];
-  sexes: Sex[];
-  species: Species[];
+  categories: string[];
+  sexes: string[];
+  species: string[];
   cities: Location[];
   isLoading: boolean;
   error: string | null;

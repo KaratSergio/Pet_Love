@@ -34,15 +34,30 @@ const RadioButton: React.FC<{ name: string; value: string; label: string }> = ({
   );
 };
 
+interface Location {
+  _id: string;
+  cityEn: string;
+  countyEn: string;
+  stateEn: string;
+  useCounty: string;
+}
+
 interface Option {
   label: string;
   value: string;
 }
 
-const transformOptions = (options: any[]): Option[] => {
+const transformOptions = (options: string[]): Option[] => {
   return options.map((option) => ({
-    label: option.name,
-    value: option.id,
+    label: option,
+    value: option,
+  }));
+};
+
+const transformOptionsLocation = (options: Location[]): Option[] => {
+  return options.map((option) => ({
+    label: option.cityEn,
+    value: option._id,
   }));
 };
 
@@ -169,14 +184,14 @@ const NoticesFilters: React.FC = () => {
             render={({ field }) => (
               <Select
                 {...field}
-                options={transformOptions(locations)}
+                options={transformOptionsLocation(locations)} // Преобразуем данные локаций в формат для Select
                 placeholder="Location"
                 className="react-select-container"
                 classNamePrefix="react-select"
                 onChange={(selectedOption: SingleValue<Option>) =>
                   field.onChange(selectedOption ? selectedOption.value : '')
                 }
-                value={transformOptions(locations).find((option) => option.value === field.value) || null}
+                value={transformOptionsLocation(locations).find((option) => option.value === field.value) || null}
               />
             )}
           />

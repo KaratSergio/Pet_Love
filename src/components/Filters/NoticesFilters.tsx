@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useForm, FormProvider, Controller, useFormContext } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@hooks/redux-hooks';
 import {
   fetchCategoriesThunk,
@@ -8,58 +8,11 @@ import {
   fetchCitiesThunk,
 } from '@redux/notices/notices-thunk';
 import { selectCategories, selectSexes, selectSpecies, selectLocations } from '@redux/notices/notices-selectors';
-import Select, { SingleValue } from 'react-select';
+import { transformOptions, transformOptionsLocation } from '@utils/dataTransformers';
 import SearchField from './SearchField';
+import { CategorySelect, SexSelect, SpeciesSelect, LocationSelect } from './SelectField';
+import RadioGroup from './RadioGroup';
 import NewsList from '../Notices/NoticesList';
-
-const RadioButton: React.FC<{ name: string; value: string; label: string }> = ({ name, value, label }) => {
-  const { control } = useFormContext();
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) => (
-        <label className="inline-flex items-center">
-          <input
-            type="radio"
-            {...field}
-            value={value}
-            checked={field.value === value}
-            className="form-radio text-blue-600"
-          />
-          <span className="ml-2">{label}</span>
-        </label>
-      )}
-    />
-  );
-};
-
-interface Location {
-  _id: string;
-  cityEn: string;
-  countyEn: string;
-  stateEn: string;
-  useCounty: string;
-}
-
-interface Option {
-  label: string;
-  value: string;
-}
-
-const transformOptions = (options: string[]): Option[] => {
-  return options.map((option) => ({
-    label: option,
-    value: option,
-  }));
-};
-
-const transformOptionsLocation = (options: Location[]): Option[] => {
-  return options.map((option) => ({
-    label: option.cityEn,
-    value: option._id,
-  }));
-};
 
 const NoticesFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -123,84 +76,13 @@ const NoticesFilters: React.FC = () => {
       <FormProvider {...methods}>
         <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
           <SearchField name="search" placeholder="Search..." />
-
-          <Controller
-            name="category"
-            control={methods.control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={transformOptions(categories)}
-                placeholder="Category"
-                className="react-select-container"
-                classNamePrefix="react-select"
-                onChange={(selectedOption: SingleValue<Option>) =>
-                  field.onChange(selectedOption ? selectedOption.value : '')
-                }
-                value={transformOptions(categories).find((option) => option.value === field.value) || null}
-              />
-            )}
-          />
-
-          <Controller
-            name="sex"
-            control={methods.control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={transformOptions(sexes)}
-                placeholder="By gender"
-                className="react-select-container"
-                classNamePrefix="react-select"
-                onChange={(selectedOption: SingleValue<Option>) =>
-                  field.onChange(selectedOption ? selectedOption.value : '')
-                }
-                value={transformOptions(sexes).find((option) => option.value === field.value) || null}
-              />
-            )}
-          />
-
-          <Controller
-            name="species"
-            control={methods.control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={transformOptions(species)}
-                placeholder="By type"
-                className="react-select-container"
-                classNamePrefix="react-select"
-                onChange={(selectedOption: SingleValue<Option>) =>
-                  field.onChange(selectedOption ? selectedOption.value : '')
-                }
-                value={transformOptions(species).find((option) => option.value === field.value) || null}
-              />
-            )}
-          />
-
-          <Controller
-            name="location"
-            control={methods.control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={transformOptionsLocation(locations)} // Преобразуем данные локаций в формат для Select
-                placeholder="Location"
-                className="react-select-container"
-                classNamePrefix="react-select"
-                onChange={(selectedOption: SingleValue<Option>) =>
-                  field.onChange(selectedOption ? selectedOption.value : '')
-                }
-                value={transformOptionsLocation(locations).find((option) => option.value === field.value) || null}
-              />
-            )}
-          />
+          <CategorySelect options={transformOptions(categories)} />
+          <SexSelect options={transformOptions(sexes)} />
+          <SpeciesSelect options={transformOptions(species)} />
+          <LocationSelect options={transformOptionsLocation(locations)} />
 
           <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center space-x-4 mt-4">
-            <RadioButton name="filter" value="popular" label="Popular" />
-            <RadioButton name="filter" value="unpopular" label="Unpopular" />
-            <RadioButton name="filter" value="cheap" label="Cheap" />
-            <RadioButton name="filter" value="expensive" label="Expensive" />
+            <RadioGroup />
             {methods.watch('filter') && (
               <button
                 type="button"

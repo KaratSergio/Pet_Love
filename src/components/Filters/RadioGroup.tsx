@@ -1,7 +1,14 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import Icon from '../Icon/Icon';
 
 const CustomRadioButton: React.FC<{ name: string; value: string; label: string }> = ({ name, value, label }) => {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
+
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setValue(name, '');
+  };
+
   return (
     <Controller
       name={name}
@@ -10,11 +17,20 @@ const CustomRadioButton: React.FC<{ name: string; value: string; label: string }
         <label className="inline-flex items-center cursor-pointer">
           <input type="radio" {...field} value={value} checked={field.value === value} className="hidden" />
           <span
-            className={`ml-2 p-2 border border-gray-300 rounded ${
-              field.value === value ? 'bg-blue-600 text-white' : 'text-gray-700'
+            className={`p-[14px] bg-white rounded-30 flex items-center ${
+              field.value === value ? 'bg-yellow text-white' : 'text-gray-700'
             }`}
           >
             {label}
+            {field.value === value && (
+              <Icon
+                id="icon-close"
+                strokeColor="stroke-white"
+                color="fill-yellow"
+                className="ml-2 cursor-pointer"
+                onClick={handleIconClick}
+              />
+            )}
           </span>
         </label>
       )}
@@ -24,7 +40,7 @@ const CustomRadioButton: React.FC<{ name: string; value: string; label: string }
 
 const RadioGroup: React.FC = () => {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex gap-2">
       <CustomRadioButton name="filter" value="popular" label="Popular" />
       <CustomRadioButton name="filter" value="unpopular" label="Unpopular" />
       <CustomRadioButton name="filter" value="cheap" label="Cheap" />

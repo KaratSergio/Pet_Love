@@ -74,20 +74,22 @@ const NoticesFilters: React.FC = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-          <SearchField name="search" placeholder="Search..." />
-          <CategorySelect options={transformOptions(categories)} />
-          <SexSelect options={transformOptions(sexes)} />
-          <SpeciesSelect options={transformOptions(species)} />
-          <LocationSelect options={transformOptionsLocation(locations)} />
+        <form className="bg-lightYellow rounded-30 px-8 py-10 mb-10">
+          <div className="flex gap-4 flex-wrap custom-border pb-5">
+            <SearchField name="search" placeholder="Search..." />
+            <CategorySelect options={transformOptions(categories)} />
+            <SexSelect options={transformOptions(sexes)} />
+            <SpeciesSelect options={transformOptions(species)} />
+            <LocationSelect options={transformOptionsLocation(locations)} />
+          </div>
 
-          <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center space-x-4 mt-4">
+          <div className="pt-5 flex">
             <RadioGroup />
             {methods.watch('filter') && (
               <button
                 type="button"
                 onClick={handleReset}
-                className="ml-auto bg-red-500 text-white px-4 py-2 rounded-md"
+                className="ml-auto bg-red-500 text-black px-4 py-2 rounded-md"
               >
                 Reset
               </button>

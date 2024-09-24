@@ -1,3 +1,5 @@
+import { FieldError } from 'react-hook-form';
+
 export interface Location {
   _id: string;
   cityEn: string;
@@ -9,4 +11,11 @@ export interface Location {
 export interface Option {
   label: string;
   value: string;
+}
+
+export interface CustomSelectProps {
+  name: string;
+  options: Option[];
+  placeholder: string;
+  error?: FieldError;
 }

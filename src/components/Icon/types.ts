@@ -6,4 +6,5 @@ export interface IconProps {
   strokeColor?: string;
   className?: string;
   style?: React.CSSProperties;
+  onClick?: (e: React.MouseEvent<SVGElement>) => void;
 }

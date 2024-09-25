@@ -17,7 +17,7 @@ const CustomRadioButton: React.FC<{ name: string; value: string; label: string }
         <label className="inline-flex items-center cursor-pointer">
           <input type="radio" {...field} value={value} checked={field.value === value} className="hidden" />
           <span
-            className={`p-[14px] bg-white rounded-30 flex items-center ${
+            className={`p-[14px] h-[48px] bg-white rounded-30 flex hover:border items-center hover:border-yellow ${
               field.value === value ? 'bg-yellow text-white' : 'text-gray-700'
             }`}
           >

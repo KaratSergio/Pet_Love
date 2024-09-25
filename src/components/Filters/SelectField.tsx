@@ -76,7 +76,3 @@ export const SexSelect: React.FC<{ options: Option[]; error?: FieldError }> = ({
 export const SpeciesSelect: React.FC<{ options: Option[]; error?: FieldError }> = ({ options, error }) => (
   <CustomSelect name="species" options={options} placeholder="By type" error={error} />
 );
-
-export const LocationSelect: React.FC<{ options: Option[]; error?: FieldError }> = ({ options, error }) => (
-  <CustomSelect name="location" options={options} placeholder="Location" error={error} />
-);

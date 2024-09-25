@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useAppSelector } from '@hooks/redux-hooks';
 import Title from '@components/Custom/Title';
 import NoticesList from '@components/Notices/NoticesList';
@@ -20,24 +21,26 @@ const NoticesPage: React.FC = () => {
 
   const totalPages = useAppSelector(selectTotalPages);
 
+  // Создаем методы для формы
+  const methods = useForm();
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   return (
-    <section className="mx-auto w-full max-w-desktop p-8 bg-orange-50">
-      <Title mainTitleClassName="sm:text-[54px]" />
-      <NoticesFilters
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        filters={filters}
-        setFilters={setFilters}
-      />
-      <NoticesList currentPage={currentPage} perPage={perPage} searchQuery={searchQuery} filters={filters} />
-      <div className="flex justify-center mt-[60px]">
-        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-      </div>
-    </section>
+    <FormProvider {...methods}>
+      {' '}
+      {/* Оборачиваем в FormProvider */}
+      <section className="mx-auto w-full max-w-desktop p-8 bg-orange-50">
+        <Title mainTitleClassName="sm:text-[54px]" />
+        <NoticesFilters />
+        <NoticesList currentPage={currentPage} perPage={perPage} searchQuery={searchQuery} filters={filters} />
+        <div className="flex justify-center mt-[60px]">
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        </div>
+      </section>
+    </FormProvider>
   );
 };
 

@@ -67,11 +67,13 @@ export interface PetBlockProps {
 }
 
 export interface SearchInputProps {
+  name: 'search' | 'location';
   placeholder?: string;
   onSubmit: (value: string) => void;
   className?: string;
 }
 
 export interface SearchInputFormValues {
-  search: string;
+  search?: string;
+  location?: string;
 }

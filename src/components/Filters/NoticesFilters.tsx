@@ -7,19 +7,18 @@ import {
   fetchSpeciesThunk,
   fetchCitiesThunk,
 } from '@redux/notices/notices-thunk';
-import { selectCategories, selectSexes, selectSpecies, selectLocations } from '@redux/notices/notices-selectors';
-import { transformOptions, transformOptionsLocation } from '@utils/dataTransformers';
-import SearchField from './SearchField';
-import { CategorySelect, SexSelect, SpeciesSelect, LocationSelect } from './SelectField';
+import { selectCategories, selectSexes, selectSpecies } from '@redux/notices/notices-selectors';
+import { transformOptions } from '@utils/dataTransformers';
+import { CategorySelect, SexSelect, SpeciesSelect } from './SelectField';
 import RadioGroup from './RadioGroup';
 import NewsList from '../Notices/NoticesList';
+import SearchInput from '../Custom/SearchInput';
 
 const NoticesFilters: React.FC = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
   const sexes = useAppSelector(selectSexes);
   const species = useAppSelector(selectSpecies);
-  const locations = useAppSelector(selectLocations);
 
   const methods = useForm({
     defaultValues: {
@@ -41,10 +40,15 @@ const NoticesFilters: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchCategoriesThunk());
-    dispatch(fetchSexesThunk());
-    dispatch(fetchSpeciesThunk());
-    dispatch(fetchCitiesThunk());
+    const fetchData = async () => {
+      await Promise.all([
+        dispatch(fetchCategoriesThunk()),
+        dispatch(fetchSexesThunk()),
+        dispatch(fetchSpeciesThunk()),
+        dispatch(fetchCitiesThunk()),
+      ]);
+    };
+    fetchData();
   }, [dispatch]);
 
   const handleReset = () => {
@@ -71,16 +75,34 @@ const NoticesFilters: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [methods]);
 
+  const handleLocationSearch = (searchTerm: string) => {
+    setFilters((prev) => ({ ...prev, location: searchTerm }));
+  };
+
+  const handleSearchSubmit = (searchTerm: string) => {
+    setFilters((prev) => ({ ...prev, search: searchTerm }));
+  };
+
   return (
     <>
       <FormProvider {...methods}>
         <form className="bg-lightYellow rounded-30 px-8 py-10 mb-10">
-          <div className="flex gap-4 flex-wrap custom-border pb-5">
-            <SearchField name="search" placeholder="Search..." />
+          <div className="flex gap-4 custom-border pb-5">
+            <SearchInput
+              name="search"
+              placeholder="Search..."
+              onSubmit={handleSearchSubmit}
+              className="w-[265px] h-[48px] hover:border-yellow"
+            />
             <CategorySelect options={transformOptions(categories)} />
             <SexSelect options={transformOptions(sexes)} />
             <SpeciesSelect options={transformOptions(species)} />
-            <LocationSelect options={transformOptionsLocation(locations)} />
+            <SearchInput
+              name="location"
+              placeholder="Location"
+              onSubmit={handleLocationSearch}
+              className="w-[227px] h-[48px] hover:border-yellow"
+            />
           </div>
 
           <div className="pt-5 flex">
@@ -89,7 +111,7 @@ const NoticesFilters: React.FC = () => {
               <button
                 type="button"
                 onClick={handleReset}
-                className="ml-auto bg-red-500 text-black px-4 py-2 rounded-md"
+                className="ml-auto bg-red-500 text-black h-[48px] px-4 py-2 rounded-md"
               >
                 Reset
               </button>

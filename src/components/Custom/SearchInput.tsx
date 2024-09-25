@@ -1,26 +1,28 @@
 import Icon from '../Icon/Icon';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { SearchInputProps, SearchInputFormValues } from './types';
 
-const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSubmit, className }) => {
-  const { register, handleSubmit, setValue, watch } = useForm<SearchInputFormValues>();
+const SearchInput: React.FC<SearchInputProps> = ({ name, placeholder, onSubmit, className }) => {
+  const { register, handleSubmit, setValue, watch } = useFormContext<SearchInputFormValues>();
 
-  const currentValue = watch('search', '');
+  const currentValue = watch(name);
 
   const handleClear = () => {
-    setValue('search', '');
+    setValue(name, '');
   };
 
-  const onSearchSubmit: SubmitHandler<SearchInputFormValues> = (data) => {
-    if (data.search.trim()) {
-      onSubmit(data.search);
+  const onSearchSubmit = (data: SearchInputFormValues) => {
+    const searchValue = data[name];
+
+    if (searchValue && searchValue.trim()) {
+      onSubmit(searchValue);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSearchSubmit)} className={`relative flex items-center ${className}`}>
       <input
-        {...register('search')}
+        {...register(name)}
         placeholder={placeholder || 'Search...'}
         type="text"
         className={`border p-4 rounded-30 w-full placeholder-lightBlack ${className}`}
@@ -30,7 +32,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSubmit, classN
           <Icon id="icon-close" className="w-5 h-5" />
         </button>
       )}
-      <button type="submit" className="absolute right-3 text-gray-400 focus:outline-none">
+      <button type="submit" className="absolute right-4 text-gray-400 focus:outline-none">
         <Icon id="icon-search" className="w-5 h-5" />
       </button>
     </form>

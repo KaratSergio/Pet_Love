@@ -10,8 +10,8 @@ import { selectTotalPages } from '@redux/notices/notices-selectors';
 const NoticesPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(6);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filters, setFilters] = useState({
+  const [searchQuery] = useState('');
+  const [filters] = useState({
     category: '',
     sex: '',
     species: '',
@@ -21,7 +21,6 @@ const NoticesPage: React.FC = () => {
 
   const totalPages = useAppSelector(selectTotalPages);
 
-  // Создаем методы для формы
   const methods = useForm();
 
   const handlePageChange = (page: number) => {
@@ -30,8 +29,6 @@ const NoticesPage: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      {' '}
-      {/* Оборачиваем в FormProvider */}
       <section className="mx-auto w-full max-w-desktop p-8 bg-orange-50">
         <Title mainTitleClassName="sm:text-[54px]" />
         <NoticesFilters />

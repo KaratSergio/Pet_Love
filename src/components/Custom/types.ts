@@ -77,3 +77,10 @@ export interface SearchInputFormValues {
   search?: string;
   location?: string;
 }
+
+export interface RadioButtonProps {
+  name: string;
+  value: string;
+  label: string;
+  setSelectedFilter: (filter: string) => void;
+}

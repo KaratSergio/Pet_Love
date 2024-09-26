@@ -10,6 +10,7 @@ export interface Notice {
   category: string;
   comment: string;
   isFavorite?: boolean;
+  price?: number;
 }
 
 export interface Location {

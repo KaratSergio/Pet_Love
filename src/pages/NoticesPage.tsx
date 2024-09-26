@@ -17,6 +17,7 @@ const NoticesPage: React.FC = () => {
     species: '',
     location: '',
     filter: '',
+    selectedFilter: '',
   });
 
   const totalPages = useAppSelector(selectTotalPages);

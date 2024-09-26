@@ -10,6 +10,7 @@ export interface NoticesListProps {
     species: string;
     location: string;
     filter: string;
+    selectedFilter: string;
   };
 }
 

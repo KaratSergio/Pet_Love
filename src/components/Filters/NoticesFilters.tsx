@@ -37,7 +37,10 @@ const NoticesFilters: React.FC = () => {
     species: '',
     location: '',
     filter: '',
+    search: '',
   });
+
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +62,9 @@ const NoticesFilters: React.FC = () => {
       species: '',
       location: '',
       filter: '',
+      search: '',
     });
+    setSelectedFilter('');
   };
 
   useEffect(() => {
@@ -70,6 +75,7 @@ const NoticesFilters: React.FC = () => {
         species: value.species ?? '',
         location: value.location ?? '',
         filter: value.filter ?? '',
+        search: value.search ?? '',
       });
     });
     return () => subscription.unsubscribe();
@@ -106,7 +112,7 @@ const NoticesFilters: React.FC = () => {
           </div>
 
           <div className="pt-5 flex">
-            <RadioGroup />
+            <RadioGroup setSelectedFilter={setSelectedFilter} />
             {methods.watch('filter') && (
               <button
                 type="button"
@@ -120,7 +126,7 @@ const NoticesFilters: React.FC = () => {
         </form>
       </FormProvider>
 
-      <NewsList searchQuery={methods.watch('search')} currentPage={1} perPage={6} filters={filters} />
+      <NewsList searchQuery={filters.search} currentPage={1} perPage={6} filters={{ ...filters, selectedFilter }} />
     </>
   );
 };
